@@ -70,7 +70,41 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class = "container">
+    <div class = 'input-group'>
+        <form action="/" method="post">
+            {% csrf_token %}
+            <input class = 'form-control' type = 'text' name = 'make' placeholder='Make'>
+            <input class = 'form-control' type = 'text' name = 'model' placeholder='Model'>
+            <input class = 'form-control' type = 'text' name = 'year' placeholder='Year'>
+            <button class="btn btn-default" type="submit">Submit</button>
+        </form>
+    </div>
 
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <th>#</th>
+        <th>Make</th>
+        <th>Model</th>
+            <th>Year</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>{{car.pk}}</td>
+                <td>{{car.make}}</td>
+                <td>{{car.model}}</td>
+                <td>{{car.year}}</td>
+                <td><a class = 'glyphicon glyphicon-remove' href = '/?remove={{ car.pk }}'></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
 
 
 

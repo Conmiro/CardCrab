@@ -1,11 +1,13 @@
-<html><head>
+<html>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-    </head><body>
+    </head>
+    <body>
         <!--This is the begining of the navigation bar-->
         <div class="navbar navbar-default navbar-inverse navbar-static-top">
             <div class="container">
@@ -229,21 +231,36 @@
                             </div>
                             <div class="panel-body">
                                 <ul class="media-list">
+                                    <!--This is an example of a card result-->
                                     <li class="media">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="64" width="64">
+                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="100" width="100">
                                         </a>
                                         <div class="media-body">
-                                            <h4 class="media-heading">Media heading</h4> 
-                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+                                            <h4 class="media-heading">
+                                                Card Result
+                                                <span class="label label-default pull-right">Modern Set 2015</span>
+                                            </h4>
+                                            <div class="btn-group pull-right">
+                                                <p class="btn btn-default btn-lg">1</p>
+                                                <div class="btn-group-vertical">
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="btn-toolbar pull-right">
+                                                <button type="button" class="btn btn-info">Details/Other Sellers</button>
+                                                <button type="button" class="btn btn-success">Add to Cart</button>
+                                            </div>
                                         </div>
                                     </li>
+                                    <!--End of the example card result-->
                                     <li class="media">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="64" width="64">
+                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="100" width="100">
                                         </a>
                                         <div class="media-body">
-                                            <h4 class="media-heading">Media heading</h4>
+                                            <h4 class="media-heading">Card Result<span class="label label-default">Modern Set 2015</span></h4>
                                             <p>Cras sit amet nibh libero, in gravida nulla.Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
                                         </div>
                                     </li>
@@ -256,7 +273,7 @@
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Shopping Cart</h3>
+                                <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Shopping Cart</h3>
                             </div>
                             <div class="panel-body">
                                 <ul class="media-list">

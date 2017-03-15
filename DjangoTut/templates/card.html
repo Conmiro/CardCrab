@@ -1,0 +1,291 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <!--This is the begining of the navigation bar-->
+        <div class="navbar navbar-default navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <span>Card Crab</span>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">Cards</a>
+                        </li>
+                    </ul>
+                    <div class="navbar-group navbar-right">
+                        <button class="navbar-btn btn btn-default" type="button">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span>Shopping Cart</span>
+                        </button>
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" class="form-control input-md" placeholder="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    
+                    <!--This groups the filter panels-->
+                    <div class="col-md-3">
+                        <!--This is for the condition filter-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Condition</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Wear
+                                        <ul class="media-list">
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Mint
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Lightly played
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Moderately played
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Heavily played
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Damaged
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Printing
+                                        <ul class="media-list">
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Foil
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Normal
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--This is for the card filters-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Card Filters</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Color
+                                        <ul class="media-list">
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Blue
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Green
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Red
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;White
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Black
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Rarity
+                                        <ul class="media-list">
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Common
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Uncommon
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Rare
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Set
+                                        <ul class="media-list">
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Modern Set 2015
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;Aether Revolt 2012
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <select class="form-control">
+                                            <option>Add set</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--This is for the results section-->
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Results</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
+                                    <!--This is an example of a card result-->
+                                    <li class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="100" width="100">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                Card Result
+                                                <span class="label label-default pull-right">Modern Set 2015</span>
+                                            </h4>
+                                            <div class="btn-group pull-right">
+                                                <p class="btn btn-default btn-lg">1</p>
+                                                <div class="btn-group-vertical">
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                                                    <button class="btn btn-default btn-sm"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="btn-toolbar pull-right">
+                                                <button type="button" class="btn btn-info">Details/Other Sellers</button>
+                                                <button type="button" class="btn btn-success">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!--End of the example card result-->
+                                    <li class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="100" width="100">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Card Result<span class="label label-default">Modern Set 2015</span></h4>
+                                            <p>Cras sit amet nibh libero, in gravida nulla.Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--This is for the right side panel shopping cart-->
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Shopping Cart</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
+                                    <li><i class="fa fa-check-circle-o"></i>&nbsp;First card</li>
+                                    <li><i class="fa fa-check-circle-o"></i>&nbsp;Second card</li>
+                                    <li><i class="fa fa-check-circle-o"></i>&nbsp;Third card</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

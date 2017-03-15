@@ -4,7 +4,27 @@
 {% block title %}Add Seller{% endblock %}
 
 {% block content %}
-
-Create new seller.
-
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        Add a Seller
+                        <form action = "/add_seller/" method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <br>
+                            <input type = "submit" value = "Submit" />
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        Seller List
+                        <ul>
+                        {% for seller in sellers %}
+                            <li>{{ seller.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}

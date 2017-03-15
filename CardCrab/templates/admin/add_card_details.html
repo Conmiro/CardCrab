@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Add Card Details{% endblock %}
+
+{% block content %}
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        Add a Card
+                        <form action = "/add_card_details/" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <br>
+
+                            <input name = "submit" type = "submit" value = "Submit" />
+                            <input name = "submit" type = "submit" value = "Preview" />
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        Front:
+                        {% if form.front_art.value %}
+                        <img src="{{ form.front_art.value }}" alt="Card Front Preview" style="width:236px;height:330px;">
+                        {% else %}
+                        <img src="https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg" alt="Card Front Preview" style="width:236px;height:330px;">
+                        {% endif %}
+
+                    </div>
+                    <div class="col-md-3">
+                        Back:
+                        {% if form.back_art.value %}
+                        <img src="{{ form.back_art.value }}" alt="Card Back Preview" style="width:236px;height:330px;">
+                        {% else %}
+                        <img src="https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg" alt="Card Back Preview" style="width:236px;height:330px;">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

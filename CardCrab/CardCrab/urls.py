@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^search/', views.search, name='search'),
-    url(r'^add_seller/', views.add_seller)
+    url(r'^add_seller/', views.add_seller, name='add_seller'),
+    url(r'^add_card_details/', views.add_card_details, name='add_card_details'),
+    url(r'^add_card/', views.add_card, name='add_card')
 ]
 

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Add Card for Sale{% endblock %}
+
+{% block content %}
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        Add a Card for Sale
+                        <form action = "/add_card/" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <br>
+
+                            <input name = "submit" type = "submit" value = "Submit" />
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- could add preview javascript upon selecting -->
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

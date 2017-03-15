@@ -20,60 +20,29 @@
                                     <li class="list-group-item">
                                         Wear
                                         <ul class="media-list">
+                                            {% for wear in filters.wear %}
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;Mint
+                                                        <input type="checkbox">&nbsp;{{ wear }}
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Lightly played
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Moderately played
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Heavily played
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Damaged
-                                                    </label>
-                                                </div>
-                                            </li>
+                                            {% endfor %}
                                         </ul>
                                     </li>
                                     <li class="list-group-item">
                                         Printing
                                         <ul class="media-list">
+                                            {% for print in filters.print %}
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;Foil
+                                                        <input type="checkbox">&nbsp;{{ print }}
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Normal
-                                                    </label>
-                                                </div>
-                                            </li>
+                                            {% endfor %}
                                         </ul>
                                     </li>
                                 </ul>
@@ -89,90 +58,44 @@
                                     <li class="list-group-item">
                                         Color
                                         <ul class="media-list">
+                                            {% for color in filters.color %}
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;Blue
+                                                        <input type="checkbox">&nbsp;{{ color }}
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Green
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Red
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;White
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Black
-                                                    </label>
-                                                </div>
-                                            </li>
+                                            {% endfor %}
                                         </ul>
                                     </li>
                                     <li class="list-group-item">
                                         Rarity
                                         <ul class="media-list">
+                                           {% for rarity in filters.rarity %}
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;Common
+                                                        <input type="checkbox">&nbsp;{{ rarity }}
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Uncommon
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Rare
-                                                    </label>
-                                                </div>
-                                            </li>
+                                            {% endfor %}
                                         </ul>
                                     </li>
                                     <li class="list-group-item">
                                         Set
                                         <ul class="media-list">
+                                            {% for set in filters.set %}
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;Modern Set 2015
+                                                        <input type="checkbox">&nbsp;{{ set }}
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">&nbsp;Aether Revolt 2012
-                                                    </label>
-                                                </div>
-                                            </li>
+                                            {% endfor %}
                                         </ul>
-                                        <select class="form-control">
-                                            <option>Add set</option>
-                                        </select>
                                     </li>
                                 </ul>
                             </div>
@@ -188,15 +111,21 @@
                             <div class="panel-body">
                                 <ul class="media-list">
                                     <!--This is an example of a card result-->
+                                    {% for card in cards %}
                                     <li class="media">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="100" width="100">
+                                            <img class="media-object" src="{{ card.front_art }} " height="176" width="126">
                                         </a>
                                         <div class="media-body">
                                             <h4 class="media-heading">
-                                                Card Result
-                                                <span class="label label-default pull-right">Modern Set 2015</span>
+                                                {{ card.name }}
+                                                <span class="label label-default pull-right">{{ card.set }}</span>
                                             </h4>
+                                            Best Seller: {{ card.cheapest_card.seller }}
+                                            <br>
+                                            Wear: {{card.cheapest_card.wear }}
+                                            <br>
+                                            Price: {{ card.cheapest_card.price }}
                                             <div class="btn-group pull-right">
                                                 <p class="btn btn-default btn-lg">1</p>
                                                 <div class="btn-group-vertical">
@@ -210,16 +139,8 @@
                                             </div>
                                         </div>
                                     </li>
+                                    {% endfor %}
                                     <!--End of the example card result-->
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="100" width="100">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Card Result<span class="label label-default">Modern Set 2015</span></h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>

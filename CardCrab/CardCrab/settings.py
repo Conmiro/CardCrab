@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'DjangoTut.apps.DjangoTutConfig',
+    'CardCrab.apps.DjangoTutConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'DjangoTut.urls'
+ROOT_URLCONF = 'CardCrab.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'DjangoTut.wsgi.application'
+WSGI_APPLICATION = 'CardCrab.wsgi.application'
 
 
 # Database

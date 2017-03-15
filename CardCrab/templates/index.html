@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!--This is the start of the Jumbo tron that is promoting the expansion of your decks-->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="jumbotron">
+                            <h1>Expand your deck!</h1>
+                            <p>...</p>
+                            <a class="btn btn-primary btn-large">Search</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--This is the start of the recent events along with there pictures.-->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="media-list">
+                            <li class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="64" width="64">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Recent Event 1</h4>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. </p>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="64" width="64">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Recent Event 2</h4>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

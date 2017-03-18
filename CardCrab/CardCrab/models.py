@@ -76,7 +76,7 @@ class Card(models.Model):
     card_details = models.ForeignKey(CardDetails)
     seller = models.ForeignKey(Seller)
     wear = models.ForeignKey(CardWear)
-    print = models.ForeignKey(CardPrint)
+    printing = models.ForeignKey(CardPrint)
     price = models.DecimalField(decimal_places=2, max_digits=6)
 
 

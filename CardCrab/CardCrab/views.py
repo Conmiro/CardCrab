@@ -84,7 +84,7 @@ def add_card(request):
             card = Card(card_details=data['card_details'],
                         seller=data['seller'],
                         wear=data['wear'],
-                        print=data['print'],
+                        printing=data['printing'],
                         price=data['price'])
             card.save()
 

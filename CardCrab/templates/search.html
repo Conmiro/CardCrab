@@ -166,6 +166,7 @@
                             </form>
                             <span class="step-links">
                                 {% if cards.has_previous %}
+                                    <input type="hidden" name="prevpage" id="prevpage" value="{{ cards.previous_page_number}}" form="change_page_form">
                                     <a href="#" onClick="changePage({{ cards.previous_page_number}} )">Previous</a>
                                 {% endif %}
 
@@ -174,6 +175,7 @@
                                 </span>
 
                                 {% if cards.has_next %}
+                                    <input type="hidden" name="nextpage" id="nextpage" value="{{ cards.next_page_number}}" form="change_page_form">
                                     <a href="#" onClick="changePage({{ cards.next_page_number}})">Next</a>
                                 {% endif %}
                             </span>

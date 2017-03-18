@@ -64,9 +64,10 @@ class CardDetails(models.Model):
     name = models.TextField()
     set = models.ForeignKey(CardSet)
     rarity = models.ForeignKey(CardRarity)
+    type = models.ForeignKey(CardType)
     formats = models.ManyToManyField(PlayFormat)
     color = models.ManyToManyField(CardColor)
-    type = models.ForeignKey(CardType)
+
 
     def __str__(self):
         return self.name

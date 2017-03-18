@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import *
 
 
@@ -19,6 +19,21 @@ def search(request):
     filters['color'] = CardColor.objects.all()
     filters['rarity'] = CardRarity.objects.all()
     filters['set'] = CardSet.objects.all()
+    filters['type'] = CardType.objects.all()
+
+    if request.method == 'POST':
+        page = request.POST.get('page')
+    else:
+        page = 2
+
+    paginator = Paginator(cards, 4)
+
+    try:
+        cards = paginator.page(page)
+    except PageNotAnInteger:
+        cards = paginator.page(1)
+    except EmptyPage:
+        cards = paginator.page(paginator.num_pages)
 
     for card in cards:
         individuals = Card.objects.filter(card_details=card)
@@ -28,6 +43,7 @@ def search(request):
 
     context = {'cards': cards, 'filters': filters}
     return render(request, 'search.html', context)
+
 
 
 def add_seller(request):

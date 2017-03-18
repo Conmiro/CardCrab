@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
 {% block title %}Search{% endblock %}
 
 {% block content %}
@@ -55,6 +54,20 @@
                             </div>
                             <div class="panel-body">
                                 <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Type
+                                        <ul class="media-list">
+                                            {% for type in filters.type %}
+                                            <li>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">&nbsp;{{ type }}
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
                                     <li class="list-group-item">
                                         Color
                                         <ul class="media-list">
@@ -143,7 +156,29 @@
                                     <!--End of the example card result-->
                                 </ul>
                             </div>
+
                         </div>
+
+                        <div class="pagination">
+                            <form id = "change_page_form" method = "post" action = "{% url 'search' %}" >
+                                {% csrf_token %}
+                                <input type="hidden" name="page" id="page" value=1 form="change_page_form">
+                            </form>
+                            <span class="step-links">
+                                {% if cards.has_previous %}
+                                    <a href="#" onClick="changePage({{ cards.previous_page_number}} )">Previous</a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ cards.number }} of {{ cards.paginator.num_pages }}.
+                                </span>
+
+                                {% if cards.has_next %}
+                                    <a href="#" onClick="changePage({{ cards.next_page_number}})">Next</a>
+                                {% endif %}
+                            </span>
+                        </div>
+
                     </div>
 
                     <!--This is for the right side panel shopping cart-->
@@ -165,3 +200,8 @@
             </div>
         </div>
   {% endblock %}
+
+
+{% block javascript %}
+<script type="text/javascript" src={% static 'js/search.js' %}></script>
+{% endblock %}

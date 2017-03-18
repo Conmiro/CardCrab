@@ -9,6 +9,7 @@
                     
                     <!--This groups the filter panels-->
                     <div class="col-md-3">
+                        <form id="filter_form" name="filter_form" method="post" target="{% url 'search_body' %}">
                         <!--This is for the condition filter-->
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -23,7 +24,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;{{ wear }}
+                                                        <input type="checkbox" name = "wear" value = "{{wear.id}}">&nbsp;{{ wear }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -37,7 +38,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;{{ print }}
+                                                        <input type="checkbox" name = "printing" value = "{{ print.id }}">&nbsp;{{ print }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -61,7 +62,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;{{ type }}
+                                                        <input type="checkbox" name="type" value="{{type.id}}"> {{ type }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -75,7 +76,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;{{ color }}
+                                                        <input type="checkbox" name="color" value="{{color.id}}">&nbsp;{{ color }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -89,7 +90,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;{{ rarity }}
+                                                        <input type="checkbox" name="rarity" value="{{rarity.id}}">&nbsp;{{ rarity }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -103,7 +104,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox">&nbsp;{{ set }}
+                                                        <input type="checkbox" name="set" value="{{set.id}}">&nbsp;{{ set }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -113,73 +114,13 @@
                                 </ul>
                             </div>
                         </div>
+                        </form>
                     </div>
                     
                     <!--This is for the results section-->
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Results</h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="media-list">
-                                    <!--This is an example of a card result-->
-                                    {% for card in cards %}
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="{{ card.front_art }} " height="176" width="126">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                {{ card.name }}
-                                                <span class="label label-default pull-right">{{ card.set }}</span>
-                                            </h4>
-                                            Best Seller: {{ card.cheapest_card.seller }}
-                                            <br>
-                                            Wear: {{card.cheapest_card.wear }}
-                                            <br>
-                                            Price: {{ card.cheapest_card.price }}
-                                            <div class="btn-group pull-right">
-                                                <p class="btn btn-default btn-lg">1</p>
-                                                <div class="btn-group-vertical">
-                                                    <button class="btn btn-default btn-sm"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                                                    <button class="btn btn-default btn-sm"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="btn-toolbar pull-right">
-                                                <button type="button" class="btn btn-info">Details/Other Sellers</button>
-                                                <button type="button" class="btn btn-success">Add to Cart</button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
-                                    <!--End of the example card result-->
-                                </ul>
-                            </div>
+                    <div id="search_body" class="col-md-6">
 
-                        </div>
 
-                        <div class="pagination">
-                            <form id = "change_page_form" method = "post" action = "{% url 'search' %}" >
-                                {% csrf_token %}
-                                <input type="hidden" name="page" id="page" value=1 form="change_page_form">
-                            </form>
-                            <span class="step-links">
-                                {% if cards.has_previous %}
-                                    <input type="hidden" name="prevpage" id="prevpage" value="{{ cards.previous_page_number}}" form="change_page_form">
-                                    <a href="#" onClick="changePage({{ cards.previous_page_number}} )">Previous</a>
-                                {% endif %}
-
-                                <span class="current">
-                                    Page {{ cards.number }} of {{ cards.paginator.num_pages }}.
-                                </span>
-
-                                {% if cards.has_next %}
-                                    <input type="hidden" name="nextpage" id="nextpage" value="{{ cards.next_page_number}}" form="change_page_form">
-                                    <a href="#" onClick="changePage({{ cards.next_page_number}})">Next</a>
-                                {% endif %}
-                            </span>
-                        </div>
 
                     </div>
 

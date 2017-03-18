@@ -4,7 +4,6 @@ from CardCrab.models import *
 from mtgsdk import *
 
 
-
 CardDetails.objects.all().delete()
 CardSet.objects.all().delete()
 PlayFormat.objects.all().delete()
@@ -32,7 +31,7 @@ for set_name in sets:
 
             if CardDetails.objects.filter(name=card.name).exists():
                 print("DUPLICATE FOUND: " + card.name)
-                continue
+
 
             card_details.front_art = card.image_url
             card_details.name = card.name
@@ -84,11 +83,19 @@ for set_name in sets:
 
             if card.colors == None:
                     color = "Colorless"
-                    cc = CardColor.objects.get(name=color)
+                    if not CardColor.objects.filter(name=color).exists():
+                        cc = CardColor(name=color)
+                        cc.save()
+                    else:
+                        cc = CardColor.objects.get(name=color)
                     card_details.color.add(cc)
             else:
                 for color in card.colors:
-                    cc = CardColor.objects.get(name=color)
+                    if not CardColor.objects.filter(name=color).exists():
+                        cc = CardColor(name=color)
+                        cc.save()
+                    else:
+                        cc = CardColor.objects.get(name=color)
                     card_details.color.add(cc)
 
             # print(str(card.multiverse_id) + ": " + card.name)

@@ -1,0 +1,61 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Results {{ cards }}</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="media-list">
+            <!--This is an example of a card result-->
+            {% for card in cards %}
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="{{ card.front_art }} " height="176" width="126">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        {{ card.name }} : {{ card.id }}
+                        <span class="label label-default pull-right">{{ card.set }}</span>
+                    </h4>
+                    Best Seller: {{ card.cheapest_card.seller }}
+                    <br>
+                    Wear: {{card.cheapest_card.wear }}
+                    <br>
+                    Price: {{ card.cheapest_card.price }}
+                    <div class="btn-group pull-right">
+                        <p class="btn btn-default btn-lg">1</p>
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-default btn-sm"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                            <button class="btn btn-default btn-sm"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar pull-right">
+                        <button type="button" class="btn btn-info">Details/Other Sellers</button>
+                        <button type="button" class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            <!--End of the example card result-->
+        </ul>
+    </div>
+
+</div>
+
+
+<div style="text-align: center">
+
+        <input type="hidden" id = "page" name="page" value = "{{ cards.number }}" form="filter_form">
+        {% if cards.has_previous %}
+            <input type="hidden" name="prevpage" id="prevpage" value="{{ cards.previous_page_number}}">
+            <button type="button" onClick="changePage({{ cards.previous_page_number}} )">Previous</button>
+        {% endif %}
+
+
+            Page {{ cards.number }} of {{ cards.paginator.num_pages }}.
+
+
+        {% if cards.has_next %}
+            <input type="hidden" name="nextpage" id="nextpage" value="{{ cards.next_page_number}}">
+            <button type ="button" onClick="changePage({{ cards.next_page_number}})">Next</button>
+        {% endif %}
+
+</div>

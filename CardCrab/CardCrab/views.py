@@ -10,21 +10,51 @@ def index(request):
     return render(request, 'index.html')
 
 
-def search(request):
+def search_body(request):
 
     cards = CardDetails.objects.all()
-    filters = {}
-    filters['wear'] = CardWear.objects.all()
-    filters['print'] = CardPrint.objects.all()
-    filters['color'] = CardColor.objects.all()
-    filters['rarity'] = CardRarity.objects.all()
-    filters['set'] = CardSet.objects.all()
-    filters['type'] = CardType.objects.all()
 
     if request.method == 'POST':
         page = request.POST.get('page')
+        wears = request.POST.getlist('wear')
+        printings = request.POST.getlist('printing')
+        card_types = request.POST.getlist('type')
+        card_colors = request.POST.getlist('color')
+        card_rarities = request.POST.getlist('rarity')
+        card_sets = request.POST.getlist('set')
+
+        if card_types:
+            cards = cards.filter(type__in=card_types)
+        if card_colors:
+            cards = cards.filter(color__in=card_colors)
+        if card_rarities:
+            cards = cards.filter(rarity__in=card_rarities)
+        if card_sets:
+            cards = cards.filter(set__in=card_sets)
+
     else:
         page = 2
+
+    remove = []
+    sellable = {}
+    for card in cards:
+        individuals = Card.objects.filter(card_details=card)
+        if wears:
+            individuals = individuals.filter(wear__in=wears)
+        if printings:
+            individuals = individuals.filter(printing__in=printings)
+        if individuals:
+            cheapest = individuals.order_by('price').first()
+            # card.cheapest_card = cheapest
+            sellable[card.pk] = cheapest
+        elif wears or printings:
+            remove.append(card.pk)
+
+    cards = cards.exclude(pk__in=remove)
+
+    for card in cards:
+        if card.pk in sellable:
+            card.cheapest_card = sellable[card.pk]
 
     paginator = Paginator(cards, 4)
 
@@ -35,13 +65,19 @@ def search(request):
     except EmptyPage:
         cards = paginator.page(paginator.num_pages)
 
-    for card in cards:
-        individuals = Card.objects.filter(card_details=card)
-        if individuals:
-            cheapest = individuals.order_by('price').first()
-            card.cheapest_card = cheapest
 
-    context = {'cards': cards, 'filters': filters}
+
+    context = {'cards': cards }
+
+    return render(request, 'search_body.html', context)
+
+
+def search(request):
+
+    filters = {'wear': CardWear.objects.all(), 'print': CardPrint.objects.all(), 'color': CardColor.objects.all(),
+               'rarity': CardRarity.objects.all(), 'set': CardSet.objects.all(), 'type': CardType.objects.all()}
+
+    context = {'filters': filters}
     return render(request, 'search.html', context)
 
 

@@ -1,7 +1,28 @@
 
+$( document ).ready(function() {
+    changePage(1)
+});
+
+$(":checkbox").click(function() {  changePage(1) } )
+
+function submitFilters() {
+    var data = $('#filter_form').serialize()
+    console.log(data)
+    $.ajax({
+            url: '/search_body/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                $('#search_body').html(data)
+                return false
+            }
+       })
+
+    //$.post('/search_body/', $('#theForm').serialize())
+
+}
 
 $(document).keydown(function(e) {
-    console.log(e.which)
     switch(e.which) {
         case 37: //left
         changePage($('#prevpage').val())
@@ -18,9 +39,6 @@ $(document).keydown(function(e) {
 });
 
 function changePage(pageNum) {
-    console.log(pageNum)
-    $("#page").val(pageNum)
-    document.getElementById("change_page_form").submit()
-
-
+$('#page').val(pageNum)
+submitFilters()
 }

@@ -8,7 +8,7 @@
             {% for card in cards %}
             <li class="media">
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="{{ card.front_art }} " height="176" width="126">
+                    <img class="media-object" src="{{ card.front_art }} " onclick="detailView({{ card.id }}, '{{ card.name }}', {{ card.cheapest_card.id }})" height="176" width="126">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">

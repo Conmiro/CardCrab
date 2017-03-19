@@ -59,6 +59,7 @@ def shopping_cart(request):
     for card in cardlist:
         cardincart = CardInCart.objects.get(cart=cart,card=card)
         card.price = cardincart.quantity * card.price
+        card.quantity = cardincart.quantity
 
     print(cardlist)
 
@@ -111,7 +112,7 @@ def search_body(request):
         page = 2
 
 
-    paginator = Paginator(cards, 4)
+    paginator = Paginator(cards, 7)
 
     try:
         cards = paginator.page(page)

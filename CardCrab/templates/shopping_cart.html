@@ -3,7 +3,7 @@
     <tbody>
     {% for card in cardlist %}
     <tr>
-        <td>{{ card.card_details.name}}<br><small>{{ card.seller }}</small></td>
+        <td>{{card.quantity}}x{{ card.card_details.name}}<br><small>{{ card.seller }}</small></td>
         <td>{{ card.wear }}<br><small>{{ card.printing }}</small></td>
         <td>${{card.price}}</td>
         <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right" aria-hidden="true" style="border:0px solid black; background-color: transparent;"></button></td>

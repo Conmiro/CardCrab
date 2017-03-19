@@ -19,6 +19,16 @@ function removeFromCart(card_id) {
        })
 }
 
+function moreLess(elem) {
+    elem = $(elem)
+    curr = elem.text()
+    if (curr == "More"){
+        elem.text("Less")
+    }else {
+        elem.text("More")
+    }
+}
+
 function addToCart(button, card_id) {
 
     var button = $(button)

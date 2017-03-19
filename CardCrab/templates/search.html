@@ -68,7 +68,12 @@
                                                     </label>
                                                 </div>
                                             </li>
+                                            {% if forloop.counter == 5 %}
+                                            <div id="more_types" class="collapse">
+                                            {% endif %}
                                             {% endfor %}
+                                            </div>
+                                            <a onclick="moreLess(this)" data-toggle="collapse" data-target="#more_types">More</a>
                                         </ul>
                                     </li>
                                     <li class="list-group-item">
@@ -110,7 +115,12 @@
                                                     </label>
                                                 </div>
                                             </li>
+                                            {% if forloop.counter == 5 %}
+                                            <div id="more_sets" class="collapse">
+                                            {% endif %}
                                             {% endfor %}
+                                            </div>
+                                            <a onclick="moreLess(this)" data-toggle="collapse" data-target="#more_sets">More</a>
                                         </ul>
                                     </li>
                                 </ul>

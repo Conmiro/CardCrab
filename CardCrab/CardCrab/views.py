@@ -40,8 +40,6 @@ def search_body(request):
         page = 2
 
 
-
-
     paginator = Paginator(cards, 4)
 
     try:

@@ -7,7 +7,6 @@ $(":checkbox").click(function() {  changePage(1) } )
 
 function submitFilters() {
     var data = $('#filter_form').serialize()
-    console.log(data)
     $.ajax({
             url: '/search_body/',
             type: 'POST',
@@ -39,6 +38,7 @@ $(document).keydown(function(e) {
 });
 
 function changePage(pageNum) {
+if (isNaN(pageNum)) return;
 $('#page').val(pageNum)
 submitFilters()
 }

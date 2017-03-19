@@ -6,7 +6,9 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    
+                    {% if search_text %}
+                    <input type="hidden" id = "search_text" name="search_text" value = "{{ search_text }}" form="filter_form">
+                    {% endif %}
                     <!--This groups the filter panels-->
                     <div class="col-md-3">
                         <form id="filter_form" name="filter_form" method="post" target="{% url 'search_body' %}">

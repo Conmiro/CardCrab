@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <div class="navbar navbar-default navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -34,15 +35,21 @@
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>Shopping Cart</span>
                         </button>
-                        <form class="navbar-form navbar-right" role="search">
-                            <div class="form-group input-group">
+                        <div class="navbar-form navbar-right" role="search">
+
+                            <form class="form-group input-group" method = 'post' action="{% url 'search' %}">
+                                {% csrf_token %}
                                 <span class="input-group-addon">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" class="form-control input-md" placeholder="Search">
-                            </div>
-                        </form>
+                                <input type="text" id="search_box" name="search_text" class="form-control input-md" placeholder="Search" value="{{ search_text|default:'' }}">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+{% block javascript %}
+<script type="text/javascript" src={% static 'js/navbar.js' %}></script>
+{% endblock %}

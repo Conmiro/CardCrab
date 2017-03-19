@@ -15,7 +15,9 @@ def search_body(request):
     cards = CardDetails.objects.all()
 
     if request.method == 'POST':
+
         page = request.POST.get('page')
+        search_text = request.POST.get('search_text')
         wears = request.POST.getlist('wear')
         printings = request.POST.getlist('printing')
         card_types = request.POST.getlist('type')
@@ -23,6 +25,8 @@ def search_body(request):
         card_rarities = request.POST.getlist('rarity')
         card_sets = request.POST.getlist('set')
 
+        if search_text:
+            cards = cards.filter(name__icontains=search_text)
         if card_types:
             cards = cards.filter(type__in=card_types)
         if card_colors:
@@ -35,26 +39,8 @@ def search_body(request):
     else:
         page = 2
 
-    remove = []
-    sellable = {}
-    for card in cards:
-        individuals = Card.objects.filter(card_details=card)
-        if wears:
-            individuals = individuals.filter(wear__in=wears)
-        if printings:
-            individuals = individuals.filter(printing__in=printings)
-        if individuals:
-            cheapest = individuals.order_by('price').first()
-            # card.cheapest_card = cheapest
-            sellable[card.pk] = cheapest
-        elif wears or printings:
-            remove.append(card.pk)
 
-    cards = cards.exclude(pk__in=remove)
 
-    for card in cards:
-        if card.pk in sellable:
-            card.cheapest_card = sellable[card.pk]
 
     paginator = Paginator(cards, 4)
 
@@ -64,6 +50,17 @@ def search_body(request):
         cards = paginator.page(1)
     except EmptyPage:
         cards = paginator.page(paginator.num_pages)
+
+
+    for card in cards:
+        individuals = Card.objects.filter(card_details=card)
+        if wears:
+            individuals = individuals.filter(wear__in=wears)
+        if printings:
+            individuals = individuals.filter(printing__in=printings)
+        if individuals:
+            cheapest = individuals.order_by('price').first()
+            card.cheapest_card = cheapest
 
 
 
@@ -77,7 +74,12 @@ def search(request):
     filters = {'wear': CardWear.objects.all(), 'print': CardPrint.objects.all(), 'color': CardColor.objects.all(),
                'rarity': CardRarity.objects.all(), 'set': CardSet.objects.all(), 'type': CardType.objects.all()}
 
-    context = {'filters': filters}
+    search_text = None
+    if request.method == 'POST':
+        search_text = request.POST.get('search_text')
+
+    print(search_text)
+    context = {'filters': filters, 'search_text': search_text}
     return render(request, 'search.html', context)
 
 

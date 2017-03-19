@@ -15,7 +15,7 @@
                         {{ card.name }} : {{ card.id }}
                         <span class="label label-default pull-right">{{ card.set }}</span>
                     </h4>
-                    Best Seller: {{ card.cheapest_card.seller }}
+                    Best Seller: {{ card.cheapest_card.seller|default:"N/A with condition filters" }}
                     <br>
                     Wear: {{card.cheapest_card.wear }}
                     <br>
@@ -44,6 +44,8 @@
 <div style="text-align: center">
 
         <input type="hidden" id = "page" name="page" value = "{{ cards.number }}" form="filter_form">
+
+
         {% if cards.has_previous %}
             <input type="hidden" name="prevpage" id="prevpage" value="{{ cards.previous_page_number}}">
             <button type="button" onClick="changePage({{ cards.previous_page_number}} )">Previous</button>

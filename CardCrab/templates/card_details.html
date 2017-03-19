@@ -1,0 +1,87 @@
+<!--this stuff is loaded inside a modal on search.html -->
+
+<div class = "row" >
+    <div class="col-md-4" style="text-align: center">
+
+
+        <img onclick="flipArt()" id = "art_preview" src="{{ details.front_art}}" alt="Card Front Preview" style="width:236px;height:330px;">
+
+        {% if details.back_art %}
+
+        <button id = "flip" onclick="flipArt()" type="button" class="btn btn-default btn-xs" value="{{ details.back_art }}">FLIP</button>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <br>
+        Set Name: {{details.set}}
+        <br>
+        Rarity: {{details.rarity}}
+        <br>
+        Color:
+        {% for color in details.color.all %}
+        {{ color }}
+        {% endfor %}
+        <br>
+        Type: {{details.type}}
+        <br>
+        Formats:
+        <ul class = "list-group">
+            {% for format in details.formats.all %}
+            <li class = "list-group-item">{{ format }}</li>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+    <div class="col-md-4">
+                <br>
+        Selected Seller: {{ chosen.seller }}
+        <br>
+        Condition: {{ chosen.wear }}
+        <br>
+        Printing: {{ chosen.printing }}
+        <br>
+        Price: {{ chosen.price }}
+        <br>
+        <button type="button" class="btn btn-success">Add to Cart</button>
+        <br>
+    </div>
+
+
+</div>
+
+
+
+<div class = "row" >
+    <div class="container col-md-12" style="overflow: auto">
+        <h2>Other {{ details.name }} for Sale</h2>
+        {% if other_cards %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Seller</th>
+                <th>Condition</th>
+                <th>Printing</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for card in other_cards %}
+            <tr>
+                <td>{{ card.seller }}</td>
+                <td>{{ card.wear }}</td>
+                <td>{{ card.printing }}</td>
+                <td>{{ card.price }}</td>
+                <td><button type="button" class="btn btn-success">Add to Cart</button></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        There are no other {{ details.name }} for sale.
+        {% endif %}
+    </div>
+
+
+</div>

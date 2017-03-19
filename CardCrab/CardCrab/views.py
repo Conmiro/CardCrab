@@ -19,7 +19,13 @@ def shopping_cart(request):
         cart.save()
 
     if request.method == 'POST':
+        action = request.POST.get('action')
         card_id = request.POST.get('card_id')
+        if action == 'remove':
+            card = Card.objects.get(pk=card_id)
+            cart.card_list.remove(card)
+            return HttpResponse("Removed!")
+
         if cart.card_list.filter(pk=card_id):
             return HttpResponse("In Cart!")
         card = Card.objects.get(pk=card_id)

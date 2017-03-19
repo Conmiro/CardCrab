@@ -6,13 +6,25 @@ $( document ).ready(function() {
 
 $(":checkbox").click(function() {  changePage(1) } )
 
+function removeFromCart(card_id) {
+
+    var data = data = {'action': 'remove', 'card_id': card_id}
+    $.ajax({
+            url: '/shopping_cart/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                loadCart()
+            }
+       })
+}
 
 function addToCart(button, card_id) {
 
     var button = $(button)
     var before_text = button.text()
 
-    data = {'card_id': card_id}
+    var data = {'action': 'add', 'card_id': card_id}
     $.ajax({
             url: '/shopping_cart/',
             type: 'POST',
@@ -20,8 +32,10 @@ function addToCart(button, card_id) {
             success: function(data){
                 loadCart()
                 button.text(data)
+                button.prop('disabled', true)
                 setTimeout(function() {
                     button.text(before_text)
+                    button.prop('disabled', false)
                 }, 1000)
 
             }

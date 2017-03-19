@@ -43,7 +43,7 @@
         <br>
         Price: {{ chosen.price }}
         <br>
-        <button type="button" class="btn btn-success">Add to Cart</button>
+        <button type="button" onclick="addToCart(this, '{{chosen.id}}')"class="btn btn-success">Add to Cart</button>
         <br>
     </div>
 
@@ -73,7 +73,7 @@
                 <td>{{ card.wear }}</td>
                 <td>{{ card.printing }}</td>
                 <td>{{ card.price }}</td>
-                <td><button type="button" class="btn btn-success">Add to Cart</button></td>
+                <td><button type="button" onclick="addToCart(this, '{{card.id}}')" class="btn btn-success">Add to Cart</button></td>
             </tr>
             {% endfor %}
             </tbody>

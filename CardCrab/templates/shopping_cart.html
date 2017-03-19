@@ -1,12 +1,12 @@
-{% if cart.card_list %}
+{% if cart.card_list.all %}
 <table class="table table-striped table-condensed small">
     <tbody>
     {% for card in cart.card_list.all %}
     <tr>
         <td>{{ card.card_details.name}}<br><small>{{ card.seller }}</small></td>
-        <td>{{ card.wear }}<br><small>{{ card.print }}</small></td>
+        <td>{{ card.wear }}<br><small>{{ card.printing }}</small></td>
         <td>${{card.price}}</td>
-        <td><i class="fa fa-times pull-right" aria-hidden="true"></i></td>
+        <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right" aria-hidden="true" style="border:0px solid black; background-color: transparent;"></button></td>
     </tr>
     {% endfor %}
     <tr>

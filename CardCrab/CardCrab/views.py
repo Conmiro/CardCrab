@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm
@@ -9,6 +10,44 @@ def index(request):
 
     return render(request, 'index.html')
 
+
+def shopping_cart(request):
+    try:
+        cart = Cart.objects.get(pk=1)
+    except ObjectDoesNotExist:
+        cart = Cart()
+        cart.save()
+
+    if request.method == 'POST':
+        card_id = request.POST.get('card_id')
+        if cart.card_list.filter(pk=card_id):
+            return HttpResponse("In Cart!")
+        card = Card.objects.get(pk=card_id)
+        cart.card_list.add(card)
+        return HttpResponse("Added!")
+
+    total = 0
+    for card in cart.card_list.all():
+        total+= card.price
+
+    context = {'cart': cart, 'total': total}
+
+    return render(request, 'shopping_cart.html', context)
+
+def card_details(request):
+
+    if request.method == 'POST':
+        card_id = request.POST.get('card_id')
+        chosen_id = request.POST.get('chosen_id')
+        chosen = Card.objects.get(pk=chosen_id)
+        details = CardDetails.objects.get(pk=card_id)
+
+        other_cards = Card.objects.filter(card_details=details).exclude(pk=chosen_id)
+
+        context = {'details': details, 'chosen': chosen, 'other_cards': other_cards}
+        return render(request, 'card_details.html', context)
+
+    return render(request, 'card_details.html')
 
 def search_body(request):
 

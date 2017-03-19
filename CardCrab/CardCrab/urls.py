@@ -24,7 +24,9 @@ urlpatterns = [
     url(r'^search/', views.search, name='search'),
     url(r'^search_body/', views.search_body, name='search_body'),
     url(r'^add_seller/', views.add_seller, name='add_seller'),
+    url(r'^card_details/', views.card_details, name='card_details'),
     url(r'^add_card_details/', views.add_card_details, name='add_card_details'),
-    url(r'^add_card/', views.add_card, name='add_card')
+    url(r'^add_card/', views.add_card, name='add_card'),
+    url(r'^shopping_cart/', views.shopping_cart, name='shopping_cart')
 ]
 

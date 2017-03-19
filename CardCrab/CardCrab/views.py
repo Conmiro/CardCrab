@@ -21,22 +21,48 @@ def shopping_cart(request):
     if request.method == 'POST':
         action = request.POST.get('action')
         card_id = request.POST.get('card_id')
+        card = Card.objects.get(pk=card_id)
+
         if action == 'remove':
-            card = Card.objects.get(pk=card_id)
-            cart.card_list.remove(card)
+            card_in_cart = CardInCart.objects.get(cart=cart, card=card)
+            card_in_cart.delete()
             return HttpResponse("Removed!")
 
-        if cart.card_list.filter(pk=card_id):
-            return HttpResponse("In Cart!")
-        card = Card.objects.get(pk=card_id)
-        cart.card_list.add(card)
+        add_quantity = int(request.POST.get('quantity'))
+        available_quantity = card.quantity
+        try:
+            card_in_cart = CardInCart.objects.get(cart=cart, card=card)
+            curr_quantity = card_in_cart.quantity
+
+            new_quantity = add_quantity + curr_quantity
+            print(new_quantity)
+            if new_quantity > available_quantity:
+                return HttpResponse("Not Enough")
+            else:
+                card_in_cart.quantity = new_quantity
+                card_in_cart.save()
+
+        except ObjectDoesNotExist:
+            if add_quantity > available_quantity:
+                return HttpResponse("Not Enough")
+            else:
+                CardInCart.objects.create(cart=cart, card=card, quantity=add_quantity)
+
         return HttpResponse("Added!")
 
     total = 0
-    for card in cart.card_list.all():
-        total+= card.price
+    for cardincart in cart.cardincart_set.all():
+        total += cardincart.card.price * cardincart.quantity
 
-    context = {'cart': cart, 'total': total}
+    cardlist = cart.card_list.all()
+
+    for card in cardlist:
+        cardincart = CardInCart.objects.get(cart=cart,card=card)
+        card.price = cardincart.quantity * card.price
+
+    print(cardlist)
+
+    context = {'cardlist': cardlist, 'total': total}
 
     return render(request, 'shopping_cart.html', context)
 

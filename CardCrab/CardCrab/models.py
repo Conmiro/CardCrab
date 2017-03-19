@@ -79,12 +79,18 @@ class Card(models.Model):
     wear = models.ForeignKey(CardWear)
     printing = models.ForeignKey(CardPrint)
     price = models.DecimalField(decimal_places=2, max_digits=6)
-
+    quantity = models.IntegerField(default=1)
 
 
 class Cart(models.Model):
-    card_list = models.ManyToManyField(Card)
+    card_list = models.ManyToManyField(Card, through='CardInCart')
     # billing_info = models.ForeignKey(BillingInfo)
     # shipping_info = models.ForeignKey(ShippingInfo)
+
+
+class CardInCart(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
 
 

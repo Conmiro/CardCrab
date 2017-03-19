@@ -29,12 +29,14 @@ for card_details in CardDetails.objects.all():
         wear = CardWear.objects.all().order_by('?').first()
         printing = CardPrint.objects.all().order_by('?').first()
         price = (randint(1, 500)) / 100
+        quantity = randint(1,12)
 
         card = Card(card_details=card_details)
         card.seller = seller
         card.wear = wear
         card.printing = printing
         card.price = price
+        card.quantity = quantity
 
         card.save()
 

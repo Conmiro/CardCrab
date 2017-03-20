@@ -7,6 +7,30 @@ $ (document).ready(function() {
 
 })
 
+
+function updateAll() {
+    $('.qty-input').each(function() {
+        var id = $(this).attr('id')
+        var qty = $(this).val()
+        card_id = /qty-(\d+)/.exec(id)[1]
+
+        var data = data = {'action': 'set', 'card_id': card_id, 'quantity': qty}
+        $.ajax({
+                url: '/shopping_cart/',
+                type: 'POST',
+                data: data,
+                success: function(data){
+                    if (data != 'Set!') {
+                        console.log("Not enough...")
+                    }
+                    loadCart()
+
+                }
+           })
+
+        })
+}
+
 function updateQuantity(e, textBox, card_id) {
 
         if (e.which == 13) {

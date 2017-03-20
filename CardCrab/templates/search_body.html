@@ -8,7 +8,7 @@
             {% for card in cards %}
             <li class="media">
 
-                <img class="media-object pull-left card-preview-md" src="{{ card.front_art }} " onclick="detailView({{ card.id }}, '{{ card.name }}', {{ card.cheapest_card.id }})">
+                <img class="media-object pull-left card-preview-md" src="{{ card.front_art }} " onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">
 
                 <div class="media-body">
                     <h4 class="media-heading">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="btn-toolbar pull-right">
-                        <button type="button" class="btn btn-info" onclick="detailView({{ card.id }}, '{{ card.name }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>
+                        <button type="button" class="btn btn-info" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>
                         <button type="button" class="btn btn-success add-cart-btn" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>
                     </div>
                 </div>

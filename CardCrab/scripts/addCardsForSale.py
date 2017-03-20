@@ -24,7 +24,7 @@ for printing in printings:
     cp.save()
 
 for card_details in CardDetails.objects.all():
-    for i in range(randint(1,6)):
+    for i in range(randint(1,10)):
         # get a random seller
         seller = Seller.objects.all().order_by('?').first()
         wear = CardWear.objects.all().order_by('?').first()

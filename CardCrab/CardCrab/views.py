@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm, ShippingInformationForm
+from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm, ShippingInformationForm, BillingInformationForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import *
 
@@ -12,6 +12,7 @@ def index(request):
 
 
 def shipping_billing_body(request):
+
 
     try:
         shipping_info = ShippingInformation.objects.get(pk=1)
@@ -25,9 +26,21 @@ def shipping_billing_body(request):
         billing_info = BillingInformation()
         billing_info.save()
 
-    form = ShippingInformationForm(instance=shipping_info)
+    if request.method == 'POST':
+        info_type = request.POST.get('info_type')
+        if info_type=='billing':
+            form = BillingInformationForm(request.POST, instance=billing_info)
+            form.save()
+        else:
+            form = ShippingInformationForm(request.POST, instance=shipping_info)
+            form.save()
 
-    context = {'shipping_info': shipping_info, 'billing_info': billing_info, 'form': form}
+        return render(request, 'checkout.html') # refresh checkout
+
+    shipping_form = ShippingInformationForm(instance=shipping_info)
+    billing_form = BillingInformationForm(instance=billing_info)
+
+    context = {'shipping_info': shipping_info, 'billing_info': billing_info, 'shipping_form': shipping_form, 'billing_form': billing_form}
 
     return render(request, 'shipping_billing_body.html', context)
 

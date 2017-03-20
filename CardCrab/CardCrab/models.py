@@ -116,6 +116,9 @@ class CardProvider(models.Model):
     name = models.CharField(max_length=128)
     art = models.URLField()
 
+    def __str__(self):
+        return self.name
+
 
 month_choices = (('JAN', '01 January'), ('FEB', '02 February'))
 year_choices = ((2017, 2017), (2018, 2018), (2019, 2019))

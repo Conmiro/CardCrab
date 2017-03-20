@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Shipping
-        <a href="#" class="pull-right"><u>Edit</u></a></h3>
+        <a data-toggle="modal" data-target="#shipping_modal" class="pull-right" style="cursor: pointer;"><u>Edit</u></a></h3>
     </div>
     <div class="panel-body">
         First Name: {{ shipping_info.first_name }}
@@ -27,7 +27,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Billing
-        <a href="#" class="pull-right"><u>Edit</u></a></h3>
+        <a class="pull-right" data-toggle="modal" data-target="#billing_modal" style="cursor: pointer;"><u>Edit</u></a></h3>
     </div>
     <div class="panel-body">
         <img src="{{ billing_info.card_provider.art }}" alt="{{ billing_info.card_provider.name }} logo">
@@ -44,3 +44,50 @@
     </div>
     {{ form }}
 </div>
+
+
+<div class="modal fade" id = "shipping_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >Billing</h4>
+      </div>
+      <div class="modal-body"">
+          <form action="/shipping_billing_body/" method = "post">
+              <input type="hidden" name = "info_type" value="shipping">
+              {% csrf_token %}
+              {{ shipping_form.as_p }}
+              <input type = "submit">
+          </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id = "billing_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >Billing</h4>
+      </div>
+      <div class="modal-body">
+          <form action="/shipping_billing_body/" method = "post">
+              <input type="hidden" name = "info_type" value="billing">
+              {% csrf_token %}
+              {{ billing_form.as_p }}
+              <input type = "submit">
+          </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

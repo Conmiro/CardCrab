@@ -21,7 +21,7 @@
     {% for card in cardlist %}
     <tr>
         <td><input class ="qty-input" id = "qty-{{card.id}}"type="text" onkeydown="return updateQuantity(event, this, {{card.id }})"value="{{ card.quantity }}" size="3" maxlength="3" style="text-align: center;"></td>
-        <td><img class="card-preview-sm" onclick="detailView({{ card.card_details.id }}, '{{ card.card_details.name }}', {{ card.id }})" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview"></td>
+        <td><img class="card-preview-sm" onclick="detailView({{ card.card_details.id }}, '{{ card.card_details.name|escapejs }}', {{ card.id }})" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview"></td>
         <td>{{card.card_details.name}}</td>
         <td>{{card.seller}}</td>
         <td>{{card.wear}}</td>

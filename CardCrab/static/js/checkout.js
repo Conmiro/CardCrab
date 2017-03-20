@@ -89,3 +89,50 @@ function loadCart() {
             }
        })
 }
+
+
+function addToCart(button, card_id) {
+
+    var button = $(button)
+    var before_text = button.text()
+
+    var quantity = 1 //set to textbox value later...
+
+    var data = {'action': 'add', 'card_id': card_id, 'quantity': quantity}
+    $.ajax({
+            url: '/shopping_cart/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                loadCart()
+                button.text(data)
+                button.prop('disabled', true)
+                setTimeout(function() {
+                    button.text(before_text)
+                    button.prop('disabled', false)
+                }, 1000)
+
+            }
+       })
+
+}
+
+function detailView(card_id, card_name, chosen_id) {
+
+$('#detail_modal_title').text(card_name)
+$('#detail_modal').modal('show');
+
+    data = {'card_id': card_id, 'chosen_id': chosen_id}
+    $.ajax({
+            url: '/card_details/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                $('#detail_modal_body').html(data)
+                return false
+            }
+       })
+
+
+
+}

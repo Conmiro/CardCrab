@@ -72,8 +72,6 @@ function flipArt() {
     $('#art_preview').attr('src', newArt)
     $('#flip').val(oldArt)
 
-    console.log(oldArt)
-    console.log(newArt)
 
 }
 

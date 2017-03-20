@@ -2,6 +2,10 @@ from django import forms
 from .models import *
 
 
+class ShippingInformationForm(forms.ModelForm):
+    class Meta:
+        model = ShippingInformation
+        fields = '__all__'
 
 class AddSellerForm(forms.Form):
     name = forms.CharField(label="Seller Name")

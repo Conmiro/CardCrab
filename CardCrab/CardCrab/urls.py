@@ -27,6 +27,9 @@ urlpatterns = [
     url(r'^card_details/', views.card_details, name='card_details'),
     url(r'^add_card_details/', views.add_card_details, name='add_card_details'),
     url(r'^add_card/', views.add_card, name='add_card'),
+    url(r'^cart_body/', views.cart_body, name='cart_body'),
+    url(r'^checkout/', views.checkout, name='checkout'),
+    url(r'^shipping_billing_body/', views.shipping_billing_body, name='shipping_billing_body'),
     url(r'^shopping_cart/', views.shopping_cart, name='shopping_cart')
 ]
 

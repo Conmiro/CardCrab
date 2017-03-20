@@ -63,6 +63,7 @@
                 <th>Condition</th>
                 <th>Printing</th>
                 <th>Price</th>
+                <th>Available</th>
                 <th></th>
             </tr>
             </thead>
@@ -72,7 +73,8 @@
                 <td>{{ card.seller }}</td>
                 <td>{{ card.wear }}</td>
                 <td>{{ card.printing }}</td>
-                <td>{{ card.price }}</td>
+                <td>${{ card.price }}</td>
+                <td>{{ card.quantity }}</td>
                 <td><button type="button" onclick="addToCart(this, '{{card.id}}')" class="btn btn-success">Add to Cart</button></td>
             </tr>
             {% endfor %}

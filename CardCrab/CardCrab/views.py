@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm
+from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm, ShippingInformationForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import *
 
@@ -11,6 +11,55 @@ def index(request):
     return render(request, 'index.html')
 
 
+def shipping_billing_body(request):
+
+    try:
+        shipping_info = ShippingInformation.objects.get(pk=1)
+    except ObjectDoesNotExist:
+        shipping_info = ShippingInformation()
+        shipping_info.save()
+
+    try:
+        billing_info = BillingInformation.objects.get(pk=1)
+    except ObjectDoesNotExist:
+        billing_info = BillingInformation()
+        billing_info.save()
+
+    form = ShippingInformationForm(instance=shipping_info)
+
+    context = {'shipping_info': shipping_info, 'billing_info': billing_info, 'form': form}
+
+    return render(request, 'shipping_billing_body.html', context)
+
+def cart_body(request):
+    try:
+        cart = Cart.objects.get(pk=1)
+    except ObjectDoesNotExist:
+        cart = Cart()
+        cart.save()
+
+    cardlist = cart.card_list.all()
+
+    total = 0
+    for cardincart in cart.cardincart_set.all():
+        total += cardincart.card.price * cardincart.quantity
+
+    for card in cardlist:
+        cardincart = CardInCart.objects.get(cart=cart,card=card)
+        card.total = cardincart.quantity * card.price
+        card.quantity = cardincart.quantity
+
+    context = {'cardlist': cardlist, 'total': total}
+
+    return render(request, 'cart_body.html', context)
+
+
+
+def checkout(request):
+
+    return render(request, 'checkout.html')
+
+# this is technically a "body"
 def shopping_cart(request):
     try:
         cart = Cart.objects.get(pk=1)

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class = "col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Cart</h3>
+
+                    </div>
+                    <div id="cart_body" class="panel-body">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class = "col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Customer Information</h3>
+                    </div>
+                    <div id = "shipping_billing_body" class="panel-body">
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
+
+    {% block javascript %}
+    <script type="text/javascript" src={% static 'js/checkout.js' %}></script>
+    {% endblock %}

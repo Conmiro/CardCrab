@@ -1,0 +1,52 @@
+{% if cardlist %}
+<table class="table table-striped">
+
+    <thead>
+    <tr>
+        <th>Qty</th>
+        <th>Art</th>
+        <th>Name</th>
+        <th>Seller</th>
+        <th>Condition</th>
+        <th>Print</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th></th>
+
+    </tr>
+
+
+    </thead>
+    <tbody>
+    {% for card in cardlist %}
+    <tr>
+        <td>{{ card.quantity }}</td>
+        <td><img onclick="flipArt()" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview" style="width:59px;height:83px;"></td>
+        <td>{{card.card_details.name}}</td>
+        <td>{{card.seller}}</td>
+        <td>{{card.wear}}</td>
+        <td>{{card.printing}}</td>
+        <td>{{card.price}}</td>
+        <td>{{card.total}}</td>
+        <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right" aria-hidden="true" style="border:0px solid black; background-color: transparent;"></button></td>
+
+    </tr>
+    {% endfor %}
+        <tr>
+        <td><b>Total</b></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{total}}</td>
+    </tr>
+
+
+    </tbody>
+
+</table>
+{% else %}
+Your cart is empty.
+{% endif %}

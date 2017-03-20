@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Shipping
+        <a href="#" class="pull-right"><u>Edit</u></a></h3>
+    </div>
+    <div class="panel-body">
+        First Name: {{ shipping_info.first_name }}
+        <br>
+        Last Name: {{shipping_info.last_name}}
+        <br>
+        Address Line 1: {{shipping_info.address_line1}}
+        <br>
+        Address Line 2: {{shipping_info.address_line2}}
+        <br>
+        City: {{shipping_info.city}}
+        <br>
+        Zip: {{shipping_info.zip}}
+        <br>
+        Phone: {{shipping_info.phone}}
+        <br>
+
+
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Billing
+        <a href="#" class="pull-right"><u>Edit</u></a></h3>
+    </div>
+    <div class="panel-body">
+        <img src="{{ billing_info.card_provider.art }}" alt="{{ billing_info.card_provider.name }} logo">
+        <br>
+        Cardholder: {{billing_info.cardholder_name}}
+        <br>
+        Card Number: {{billing_info.card_number}}
+        <br>
+        Expiration: {{billing_info.exp_month}} {{billing_info.exp_year}}
+        <br>
+        Security Code: {{billing_info.sec_code}}
+
+
+    </div>
+    {{ form }}
+</div>

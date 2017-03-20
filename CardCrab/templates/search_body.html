@@ -7,9 +7,9 @@
             <!--This is an example of a card result-->
             {% for card in cards %}
             <li class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="{{ card.front_art }} " onclick="detailView({{ card.id }}, '{{ card.name }}', {{ card.cheapest_card.id }})" height="176" width="126">
-                </a>
+
+                <img class="media-object pull-left card-preview-md" src="{{ card.front_art }} " onclick="detailView({{ card.id }}, '{{ card.name }}', {{ card.cheapest_card.id }})">
+
                 <div class="media-body">
                     <h4 class="media-heading">
                         {{ card.name }}

@@ -21,14 +21,14 @@
     {% for card in cardlist %}
     <tr>
         <td><input class ="qty-input" id = "qty-{{card.id}}"type="text" onkeydown="return updateQuantity(event, this, {{card.id }})"value="{{ card.quantity }}" size="3" maxlength="3" style="text-align: center;"></td>
-        <td><img onclick="detailView({{ card.card_details.id }}, '{{ card.card_details.name }}', {{ card.id }})" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview" style="width:59px;height:83px;cursor:pointer;"></td>
+        <td><img class="card-preview-sm" onclick="detailView({{ card.card_details.id }}, '{{ card.card_details.name }}', {{ card.id }})" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview"></td>
         <td>{{card.card_details.name}}</td>
         <td>{{card.seller}}</td>
         <td>{{card.wear}}</td>
         <td>{{card.printing}}</td>
         <td>{{card.price}}</td>
         <td>{{card.total}}</td>
-        <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right" aria-hidden="true" style="border:0px solid black; background-color: transparent;"></button></td>
+        <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right hidden-btn" aria-hidden="true" ></button></td>
 
     </tr>
     {% endfor %}

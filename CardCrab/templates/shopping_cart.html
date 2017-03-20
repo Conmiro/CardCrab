@@ -17,7 +17,7 @@
     </tr>
     </tbody>
 </table>
-<button type="button" class="btn btn-success pull-right">Checkout</button>
+<a type="button" href="{% url 'checkout' %}" class="btn btn-success pull-right">Checkout</a>
 {% else %}
 Your cart is empty.
 {% endif %}

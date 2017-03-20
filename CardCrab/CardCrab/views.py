@@ -72,6 +72,7 @@ def checkout(request):
 
     return render(request, 'checkout.html')
 
+
 # this is technically a "body"
 def shopping_cart(request):
     try:
@@ -84,6 +85,20 @@ def shopping_cart(request):
         action = request.POST.get('action')
         card_id = request.POST.get('card_id')
         card = Card.objects.get(pk=card_id)
+
+        if action == 'set':
+            set_quantity = int(request.POST.get('quantity'))
+            available_quantity = card.quantity
+            card_in_cart = CardInCart.objects.get(cart=cart, card=card)
+
+            if set_quantity > available_quantity:
+                card_in_cart.quantity = available_quantity
+                card_in_cart.save()
+                return HttpResponse("Not Enough")
+
+            card_in_cart.quantity = set_quantity
+            card_in_cart.save()
+            return HttpResponse("Set!")
 
         if action == 'remove':
             card_in_cart = CardInCart.objects.get(cart=cart, card=card)

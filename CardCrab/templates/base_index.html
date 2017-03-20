@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+    <!--This is to setup bootstrap and jquery along with anything else we may need.-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+              type="text/css">
+        <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet"
+              type="text/css">
+
+        {% block html%} {% endblock %}
+        <title>{% block title %}Card Crab{% endblock %}</title>
+
+    </head>
+
+    <body>
+        <header>
+            {% include 'navbar_index.html' %}
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+
+        </footer>
+
+
+        <script type="text/javascript" src={% static 'js/django_csrf_extraction.js' %}></script>
+        {% block javascript %}
+        {% endblock %}
+
+    </body>
+
+</html>

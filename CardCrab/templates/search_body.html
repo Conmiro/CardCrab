@@ -29,7 +29,7 @@
                     </div>
                     <div class="btn-toolbar pull-right">
                         <button type="button" class="btn btn-info" onclick="detailView({{ card.id }}, '{{ card.name }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>
-                        <button type="button" class="btn btn-success" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>
+                        <button type="button" class="btn btn-success add-cart-btn" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>
                     </div>
                 </div>
             </li>

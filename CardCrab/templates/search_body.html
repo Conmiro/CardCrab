@@ -23,7 +23,7 @@
                     <br>
                     <br>
                     <br>
-                    <div class="btn-group pull-right">
+                    <div class="btn-group pull-right quantity-button">
                         <br>
                         <p class="btn btn-default btn-ccl">1</p>
                         <div class="btn-group-vertical">
@@ -31,7 +31,7 @@
                             <button class="btn btn-default btn-ccs"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <div class="btn-toolbar pull-right">
+                    <div class="btn-toolbar pull-right detailcart-toolbar">
                         <br>
                         <button type="button" class="btn btn-info" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>
                         <button type="button" class="btn btn-success add-cart-btn" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>&nbsp;&nbsp;

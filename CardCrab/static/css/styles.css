@@ -26,3 +26,13 @@
 .carousel-img{
     width:1300px;
 }
+
+.quantity-button  {
+    position: relative;
+    top: -100px;
+}
+.detailcart-toolbar{
+    position: relative;
+    top: -50px;
+    left: 84px;
+}

@@ -30,7 +30,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input class = "pull-right" style="text-align:center" id = "qty-{{ card.cheapest_card.id}}" type = "text" value = "1" size = "1">
+                                <p class = "pull-right">Qty:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  style="text-align:center" id = "qty-{{ card.cheapest_card.id}}" type = "text" value = "1" size = "1"></p>
                                 <br>
                                 <br>
                                 <button type="button" class="btn btn-info pull-left" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>

@@ -44,6 +44,7 @@ def shipping_billing_body(request):
 
     return render(request, 'shipping_billing_body.html', context)
 
+
 def cart_body(request):
     try:
         cart = Cart.objects.get(pk=1)

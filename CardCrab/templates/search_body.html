@@ -15,27 +15,40 @@
                         {{ card.name }}
                         <span class="label label-default pull-right">{{ card.set }}</span>
                     </h4>
-                    Best Seller: {{ card.cheapest_card.seller|default:"N/A with condition filters" }}
-                    <br>
-                    Wear: {{card.cheapest_card.wear }}
-                    <br>
-                    Price: <i class="fa fa-usd">&nbsp;{{ card.cheapest_card.price }}</i>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="btn-group pull-right quantity-button">
-                        <br>
-                        <p class="btn btn-default btn-ccl">1</p>
-                        <div class="btn-group-vertical">
-                            <button class="btn btn-default btn-ccs"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                            <button class="btn btn-default btn-ccs"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <table class = "table">
+                        <tr>
+                            <td>
+                                Best Seller: {{ card.cheapest_card.seller|default:"N/A with condition filters" }}
+                                <br>
+                                Wear: {{card.cheapest_card.wear }}
+                                <br>
+                                Price: <i class="fa fa-usd">&nbsp;{{ card.cheapest_card.price }}</i>
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class = "pull-right" style="text-align:center" id = "qty-{{ card.cheapest_card.id}}" type = "text" value = "1" size = "1">
+                                <br>
+                                <br>
+                                <button type="button" class="btn btn-info pull-left" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>
+                                <button type="button" class="btn btn-success add-cart-btn pull-right" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>
+
+                            </td>
+                        </tr>
+                    </div>
                         </div>
-                    </div>
-                    <div class="btn-toolbar pull-right detailcart-toolbar">
-                        <br>
-                        <button type="button" class="btn btn-info" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>
-                        <button type="button" class="btn btn-success add-cart-btn" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>&nbsp;&nbsp;
-                    </div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+
+
                 </div>
             </li>
             {% endfor %}

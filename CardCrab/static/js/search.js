@@ -34,7 +34,11 @@ function addToCart(button, card_id) {
     var button = $(button)
     var before_text = button.text()
 
-    var quantity = 1 //set to textbox value later...
+
+    var qtyBox = $("#qty-"+card_id)
+
+
+    var quantity = qtyBox.val() //set to textbox value later...
 
     var data = {'action': 'add', 'card_id': card_id, 'quantity': quantity}
     $.ajax({

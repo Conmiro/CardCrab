@@ -149,8 +149,11 @@ def card_details(request):
 
     if request.method == 'POST':
         card_id = request.POST.get('card_id')
-        chosen_id = request.POST.get('chosen_id')
-        chosen = Card.objects.get(pk=chosen_id)
+        chosen_id = int( request.POST.get('chosen_id') )
+        if not chosen_id == 0:
+            chosen = Card.objects.get(pk=chosen_id)
+        else:
+            chosen = None
         details = CardDetails.objects.get(pk=card_id)
 
         other_cards = Card.objects.filter(card_details=details).exclude(pk=chosen_id).order_by('price')

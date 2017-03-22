@@ -18,11 +18,15 @@
                     <table class = "table">
                         <tr>
                             <td>
-                                Best Seller: {{ card.cheapest_card.seller|default:"N/A with condition filters" }}
+                                {% if card.cheapest_card %}
+                                Best Seller: {{ card.cheapest_card.seller }}
                                 <br>
                                 Wear: {{card.cheapest_card.wear }}
                                 <br>
                                 Price: <i class="fa fa-usd">&nbsp;{{ card.cheapest_card.price }}</i>
+                                {% else %}
+                                N/A with current filters.
+                                {% endif%}
                             </td>
                             <td>
 
@@ -30,12 +34,15 @@
                         </tr>
                         <tr>
                             <td>
+                                {% if card.cheapest_card %}
                                 <p class = "pull-right">Qty:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  style="text-align:center" id = "qty-{{ card.cheapest_card.id}}" type = "text" value = "1" size = "1"></p>
+                                {% endif %}
                                 <br>
                                 <br>
-                                <button type="button" class="btn btn-info pull-left" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">Details/Other Sellers</button>
+                                <button type="button" class="btn btn-info pull-left" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id|default:0 }})">Details/Other Sellers</button>
+                                {% if card.cheapest_card %}
                                 <button type="button" class="btn btn-success add-cart-btn pull-right" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>
-
+                                {% endif %}
                             </td>
                         </tr>
                     </div>

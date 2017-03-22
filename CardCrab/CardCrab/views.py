@@ -205,11 +205,16 @@ def search_body(request):
 
     for card in cards:
         individuals = Card.objects.filter(card_details=card)
+        card.total_quantity = 0
+        card.seller_count = 0
         if wears:
             individuals = individuals.filter(wear__in=wears)
         if printings:
             individuals = individuals.filter(printing__in=printings)
         if individuals:
+            for individ in individuals:
+                card.total_quantity += individ.quantity
+                card.seller_count += 1
             cheapest = individuals.order_by('price').first()
             card.cheapest_card = cheapest
 

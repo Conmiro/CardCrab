@@ -39,6 +39,10 @@ function addToCart(button, card_id) {
 
 
     var quantity = qtyBox.val() //set to textbox value later...
+    console.log(quantity);
+    if (quantity == null) {
+        quantity = 1;
+    }
 
     var data = {'action': 'add', 'card_id': card_id, 'quantity': quantity}
     $.ajax({

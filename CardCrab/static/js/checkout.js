@@ -136,3 +136,8 @@ $('#detail_modal').modal('show');
 
 
 }
+
+function submitOrder() {
+$('#order_modal').modal('show');
+
+}

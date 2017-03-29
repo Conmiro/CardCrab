@@ -139,5 +139,12 @@ $('#detail_modal').modal('show');
 
 function submitOrder() {
 $('#order_modal').modal('show');
+    $.ajax({
+            url: '/submit_order/',
+            success: function(data){
+            }
+       })
+
+      loadCart();
 
 }

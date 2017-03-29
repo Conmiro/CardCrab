@@ -225,6 +225,16 @@ def search_body(request):
     return render(request, 'search_body.html', context)
 
 
+def submit_order(request):
+    try:
+        cart = Cart.objects.get(pk=1)
+    except ObjectDoesNotExist:
+        cart = Cart()
+        cart.save()
+
+    cart.card_list.clear()
+    return render(request, 'checkout.html')
+
 def search(request):
 
     filters = {'wear': CardWear.objects.all(), 'print': CardPrint.objects.all(), 'color': CardColor.objects.all(),

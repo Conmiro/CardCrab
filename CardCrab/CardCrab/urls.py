@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^cart_body/', views.cart_body, name='cart_body'),
     url(r'^checkout/', views.checkout, name='checkout'),
     url(r'^shipping_billing_body/', views.shipping_billing_body, name='shipping_billing_body'),
-    url(r'^shopping_cart/', views.shopping_cart, name='shopping_cart')
+    url(r'^shopping_cart/', views.shopping_cart, name='shopping_cart'),
+    url(r'^submit_order/', views.submit_order, name='submit_order')
+
 ]
 

@@ -1,0 +1,35 @@
+
+{% load static %}
+
+
+<form onsubmit="register(); return false;" id = "register_form" >
+    {% csrf_token %}
+    {% for field in form %}
+    <label for="{{ field.name }}" data-error="wrong" data-success="right">{{ field.label }}</label>
+
+
+    {% if field.name == 'username' %}
+    <input type="text" id="{{ field.name }}" name="{{ field.name }}" minlength="5" maxlength="25" class = "form-control" required>
+    <p id="username_error" class="bg-danger">Username is already taken!</p>
+    {% elif field.name == 'email' %}
+    <input type="email" id="{{ field.name}}" name="{{ field.name }}" class="form-control" required>
+    {% elif field.name == 'password' %}
+    <input type="password" id="{{ field.name }}" name="{{ field.name }}" class="form-control" minlength="6" maxlength="25" required>
+    {% elif field.name == 'confirm_password' %}
+    <input type="password" id="{{ field.name }}" name="{{ field.name }}" class="form-control" minlength="6" maxlength="25" required>
+    <p id="password_error" class="bg-danger">Passwords don't match!</p>
+    {% else %}
+    <input type="text" id="{{ field.name }}" name="{{ field.name }}" class="form-control" required>
+    {% endif %}
+
+    {% endfor %}
+
+    <div class="text-xs-center">
+        <br>
+        <button type="submit" class="btn default-primary-color">Register</button>
+    </div>
+</form>
+
+{% block javascript %}
+<script type="text/javascript" src={% static 'js/register.js' %}></script>
+{% endblock %}

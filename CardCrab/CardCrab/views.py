@@ -1,7 +1,9 @@
 from django.core.exceptions import ObjectDoesNotExist
+import json
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm, ShippingInformationForm, BillingInformationForm
+from .forms import AddSellerForm, AddCardDetailsForm, AddCardForm, ShippingInformationForm, BillingInformationForm, \
+    RegisterForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import *
 
@@ -11,8 +13,38 @@ def index(request):
     return render(request, 'index.html')
 
 
-def shipping_billing_body(request):
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
 
+        errors = []
+        if form.is_valid():
+            data = form.cleaned_data
+            print(data)
+            username = data['username']
+            email = data['email']
+            password = data['password']
+            confirm_password = data['confirm_password']
+
+            if User.objects.filter(username=username).exists():
+                errors.append('USER_EXISTS')
+            if password != confirm_password:
+                errors.append('PASSWORD_MISMATCH')
+
+            if errors:
+                return HttpResponse(json.dumps(errors))
+            else:
+                user = User.objects.create_user(username, email, password)
+                return HttpResponse("SUCCESS")
+
+
+    else:
+        form = RegisterForm()
+
+    return render(request, 'register.html', {'form': form})
+
+
+def shipping_billing_body(request):
 
     try:
         shipping_info = ShippingInformation.objects.get(pk=1)

@@ -1,0 +1,30 @@
+{% load static %}
+
+<form id="login_form" name="login_form" onsubmit="return login()" method="post">
+
+  {% for field in form %}
+    <div class="md-form">
+      <label for="{{ field.name }}" data-error="wrong" data-success="right">{{ field.label }}</label>
+
+      {% if field.name == 'password' %}
+        <i class="fa fa-lock prefix"></i>
+        <input type="password" id="{{ field.name }}" name="{{ field.name }}" class="form-control" required>
+        <br>
+        <p id="error_message" class="bg-danger">Username/Password combination is invalid.</p>
+      {% else %}
+        <i class="fa fa-user prefix"></i>
+        <input type="text" id="{{ field.name }}" name="{{ field.name }}" class="form-control" required>
+      {% endif %}
+
+    </div>
+  {% endfor %}
+
+  <div class="text-xs-center">
+    <button type = "submit" form="login_form" class="btn default-primary-color">Login</button>
+  </div>
+
+</form>
+
+{% block javascript %}
+<script type="text/javascript" src={% static 'js/login.js' %}></script>
+{% endblock %}

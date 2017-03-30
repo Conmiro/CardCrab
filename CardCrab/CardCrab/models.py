@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
 
 
 class Seller(models.Model):
@@ -92,6 +95,8 @@ class CardInCart(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+
+
 
 
 class ShippingState(models.Model):

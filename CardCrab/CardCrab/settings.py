@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Decides where the login/logout urls redirect to
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login'
+LOGOUT_URL = '/logout'
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 

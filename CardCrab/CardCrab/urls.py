@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
@@ -31,7 +31,10 @@ urlpatterns = [
     url(r'^checkout/', views.checkout, name='checkout'),
     url(r'^shipping_billing_body/', views.shipping_billing_body, name='shipping_billing_body'),
     url(r'^shopping_cart/', views.shopping_cart, name='shopping_cart'),
-    url(r'^submit_order/', views.submit_order, name='submit_order')
+    url(r'^submit_order/', views.submit_order, name='submit_order'),
+    url(r'^register/', views.register, name='register'),
+    url(r'^login/$', auth_views.login, name='login', kwargs={'template_name': 'login.html','redirect_authenticated_user': True}),
+    url(r'^logout/$', auth_views.logout, name='logout')
 
 ]
 

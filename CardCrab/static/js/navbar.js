@@ -10,3 +10,57 @@ $(document).ready(function() {
     }
 
 })
+
+
+function open_register() {
+
+
+$('#user_modal_title').text('Register')
+$('#user_modal').modal('show');
+var data = { }
+    $.ajax({
+            url: '/register/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                $('#user_modal_body').html(data)
+
+            }
+       })
+
+
+}
+
+function open_login() {
+$('#user_modal_title').text('Login')
+$('#user_modal').modal('show');
+
+var data = { }
+    $.ajax({
+            url: '/login/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                $('#user_modal_body').html(data)
+
+            }
+       })
+
+
+}
+
+function logout() {
+
+    var data = { }
+    $.ajax({
+            url: '/logout/',
+            async: false,
+            data: data,
+            success: function(data){
+
+               location.reload();
+
+            }
+       })
+
+}

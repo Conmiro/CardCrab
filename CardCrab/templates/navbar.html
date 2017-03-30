@@ -33,7 +33,10 @@
                         -->
 
                     </ul>
-                    <div class="navbar-group navbar-right">
+
+                    <div class="nav navbar-nav navbar-group navbar-right">
+
+
                         <a href = "{% url 'checkout' %}" class="navbar-btn btn btn-default" type="button">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>Shopping Cart</span>
@@ -49,9 +52,31 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                    <!-- login/register links -->
+
+                    <ul class="nav navbar-nav navbar-group navbar-right">
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a href="#" onclick="profile()">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </li>
+                    {% else %}
+                        <li >
+                            <a href="#" onclick="open_register()">Register</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="open_login()">Login</a>
+                        </li>
+                        {% endif %}
+
+                </ul>
             </div>
         </div>
+
+
+
 
 {% block javascript %}
 <script type="text/javascript" src={% static 'js/navbar.js' %}></script>

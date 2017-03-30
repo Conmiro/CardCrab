@@ -78,11 +78,8 @@ def shipping_billing_body(request):
 
 
 def cart_body(request):
-    try:
-        cart = Cart.objects.get(pk=1)
-    except ObjectDoesNotExist:
-        cart = Cart()
-        cart.save()
+
+    cart = get_cart(request)
 
     cardlist = cart.card_list.all()
 
@@ -101,6 +98,8 @@ def cart_body(request):
 
 
 
+
+
 def checkout(request):
 
     return render(request, 'checkout.html')
@@ -108,11 +107,8 @@ def checkout(request):
 
 # this is technically a "body"
 def shopping_cart(request):
-    try:
-        cart = Cart.objects.get(pk=1)
-    except ObjectDoesNotExist:
-        cart = Cart()
-        cart.save()
+
+    cart = get_cart(request)
 
     if request.method == 'POST':
         action = request.POST.get('action')
@@ -176,6 +172,18 @@ def shopping_cart(request):
     context = {'cardlist': cardlist, 'total': total}
 
     return render(request, 'shopping_cart.html', context)
+
+
+def get_cart(request):
+    if request.session.get('cart_id', False):
+        print("Cart ID: " + str(request.session.get('cart_id')))
+        cart = Cart.objects.get(pk=request.session.get('cart_id'))
+    else:
+        cart = Cart()
+        cart.save()
+        request.session['cart_id'] = cart.id
+
+    return cart
 
 def card_details(request):
 

@@ -382,6 +382,7 @@ def add_card(request):
                         wear=data['wear'],
                         printing=data['printing'],
                         price=data['price'],
+                        quantity=data['quantity'],
                         store=store)
             card.save()
             return my_store(request)

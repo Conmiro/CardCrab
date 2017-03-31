@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
 
+
     var path = $('#current_path').val()
     console.log(path)
     if (path=="/"){
@@ -67,6 +68,8 @@ function logout() {
 
 function open_sell_card() {
 
+
+
     var data = { };
     $('#user_modal_title').text('Add Card for Sale')
     $('#user_modal').modal('show');
@@ -75,9 +78,25 @@ function open_sell_card() {
             data: data,
             success: function(data){
                $('#user_modal_body').html(data)
+               $('#card_added').hide();
+
 
             }
        })
+
+
+}
+
+function add_card(button) {
+    $('#add_card_submit').addClass('disabled');
+    $('#card_added').show();
+
+
+     setTimeout(function() {
+                 window.location.replace("/my_store/");
+            }, 2500)
+
+    return false
 
 
 }

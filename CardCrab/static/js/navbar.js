@@ -87,6 +87,7 @@ function open_sell_card() {
 
 }
 
+//adds card
 function add_card(button) {
     $('#add_card_submit').addClass('disabled');
     $('#card_added').show();

@@ -71,18 +71,20 @@ class CardDetails(models.Model):
     formats = models.ManyToManyField(PlayFormat)
     color = models.ManyToManyField(CardColor)
 
-
     def __str__(self):
         return self.name
 
+class Store(models.Model):
+    owner = models.OneToOneField(User)
+    display_name = models.CharField(max_length=64)
 
 class Card(models.Model):
     card_details = models.ForeignKey(CardDetails)
-    seller = models.ForeignKey(Seller)
     wear = models.ForeignKey(CardWear)
     printing = models.ForeignKey(CardPrint)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     quantity = models.IntegerField(default=1)
+    store = models.ForeignKey(Store)
 
 
 class Cart(models.Model):
@@ -95,6 +97,7 @@ class CardInCart(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+
 
 
 

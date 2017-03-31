@@ -64,3 +64,21 @@ function logout() {
        })
 
 }
+
+
+function open_sell_card() {
+
+    var data = { };
+    $('#user_modal_title').text('Add Card for Sale')
+    $('#user_modal').modal('show');
+        $.ajax({
+            url: '/add_card/',
+            data: data,
+            success: function(data){
+               $('#user_modal_body').html(data)
+
+            }
+       })
+
+
+}

@@ -4,16 +4,29 @@ from random import randint
 
 CardPrint.objects.all().delete()
 CardWear.objects.all().delete()
-Seller.objects.all().delete()
 Card.objects.all().delete()
+User.objects.all().delete()
+Store.objectsp.all().delete()
 
-sellers = ['Betancards', 'Miro Games', 'Armstrong Games', 'Cenci Cards']
+sellers = ['Connor Romeros', 'Steven Cenci', 'Alex Betancourt', 'Daniel Armstrong']
 wears = ['Mint', 'Lightly Played', 'Moderately Played', 'Heavily Played', 'Damaged']
 printings = ['Foil', 'Normal']
 
 for seller in sellers:
-    s = Seller(name=seller)
-    s.save()
+    first_name = seller.split()
+    last_name = first_name.pop(len(first_name) - 1)
+    first_name = first_name[0]
+    username = first_name[0] + last_name
+
+    user = User.objects.create_user(username=username, email=username+"@mailinator.com", password="temp")
+    user.first_name = first_name
+    user.last_name = last_name
+    user.save()
+
+    store = Store(owner=user, display_name=user.first_name)
+    store.save()
+
+
 
 for wear in wears:
     cw = CardWear(name=wear)
@@ -26,7 +39,7 @@ for printing in printings:
 for card_details in CardDetails.objects.all():
     for i in range(randint(1,10)):
         # get a random seller
-        seller = Seller.objects.all().order_by('?').first()
+        store = Store.objects.all().order_by('?').first()
         wear = CardWear.objects.all().order_by('?').first()
         printing = CardPrint.objects.all().order_by('?').first()
         price = (randint(1, 5)) / 100
@@ -68,10 +81,8 @@ for card_details in CardDetails.objects.all():
         if quantity < 1:
             quantity = 1
 
-
-
         card = Card(card_details=card_details)
-        card.seller = seller
+        card.store = store
         card.wear = wear
         card.printing = printing
         card.price = price

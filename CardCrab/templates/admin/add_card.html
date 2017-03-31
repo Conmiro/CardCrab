@@ -1,14 +1,9 @@
-{% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Add Card for Sale{% endblock %}
-
-{% block content %}
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        Add a Card for Sale
                         <form action = "/add_card/" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
@@ -27,4 +22,3 @@
                 </div>
             </div>
         </div>
-{% endblock %}

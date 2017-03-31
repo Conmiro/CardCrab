@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}My Store{% endblock %}
+
+{% block content %}
+
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class = "col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-home"></i> My Store</h3>
+
+                    </div>
+                    <div id="my_store_body" class="panel-body">
+                    {% if user.is_authenticated %}
+                    Loading...
+                    {% else %}
+                    Please <a href = "#" onclick="open_login()">login</a> to continue.
+                    {% endif %}
+
+                    </div>
+                </div>
+            </div>
+             <div class = "col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-gear"></i> Store Settings</h3>
+
+                    </div>
+                    <div id="my_store_settings" class="panel-body">
+                    {% if user.is_authenticated %}
+                    <b>Store Name: </b> {{store.display_name}}
+                    {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src={% static 'js/store.js' %}></script>
+
+{% endblock %}

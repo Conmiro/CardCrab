@@ -41,8 +41,8 @@ class AddCardDetailsForm(forms.Form):
 
 class AddCardForm(forms.Form):
     card_details = forms.ModelChoiceField(queryset=CardDetails.objects.all(), label='Card')
-    seller = forms.ModelChoiceField(queryset=Seller.objects.all())
     wear = forms.ModelChoiceField(queryset=CardWear.objects.all())
     printing = forms.ModelChoiceField(queryset=CardPrint.objects.all())
+    quantity = forms.IntegerField()
     price = forms.DecimalField(decimal_places=2, max_digits=6)
 

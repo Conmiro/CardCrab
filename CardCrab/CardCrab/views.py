@@ -13,6 +13,38 @@ def index(request):
     return render(request, 'index.html')
 
 
+def my_store(request):
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'remove':
+            card_id = request.POST.get('card_id')
+            print("Removing: " + card_id)
+            Card.objects.get(id=card_id).delete()
+            return HttpResponse("Deleted!")
+
+    user = request.user
+
+    if str(user) != 'AnonymousUser':
+        store = Store.objects.get(owner=user)
+        context = {'store': store}
+    else:
+        context = { }
+
+
+
+    return render(request, 'seller/my_store.html', context)
+
+def my_store_body(request):
+    user = request.user
+    store = Store.objects.get(owner=user)
+
+    cards = Card.objects.filter(store=store)
+
+    context = {'cardlist': cards}
+    return render(request, 'seller/my_store_body.html', context)
+
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -40,6 +72,8 @@ def register(request):
                 user.first_name = first_name
                 user.last_name = last_name
                 user.save()
+                store = Store(owner=user, display_name=user.first_name)
+                store.save()
                 return HttpResponse("SUCCESS")
 
 
@@ -346,12 +380,15 @@ def add_card(request):
         form = AddCardForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            user = request.user
+            store = Store.objects.filter(owner=user).get()
             card = Card(card_details=data['card_details'],
-                        seller=data['seller'],
                         wear=data['wear'],
                         printing=data['printing'],
-                        price=data['price'])
+                        price=data['price'],
+                        store=store)
             card.save()
+            return render(request, 'seller/my_store.html')
 
     form = AddCardForm()
 

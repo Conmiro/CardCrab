@@ -10,6 +10,8 @@ PlayFormat.objects.all().delete()
 CardRarity.objects.all().delete()
 CardType.objects.all().delete()
 
+
+
 sets = ['soi', 'emn', 'ogw', 'bfz', 'm10', 'm11', 'm12', 'm13', 'm14', 'm15', 'ori']
 
 front = True

@@ -19,7 +19,7 @@
                         <tr>
                             <td>
                                 {% if card.cheapest_card %}
-                                Best Seller: {{ card.cheapest_card.seller }}
+                                Best Seller: {{ card.cheapest_card.store.display_name }}
                                 <br>
                                 Wear: {{card.cheapest_card.wear }}
                                 <br>

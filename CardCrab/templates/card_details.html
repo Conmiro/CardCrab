@@ -35,8 +35,8 @@
     </div>
     <div class="col-md-4">
         <br>
-        {% if chosen.seller %}
-        Selected Seller: {{ chosen.seller }}
+        {% if chosen.store %}
+        Selected Seller: {{ chosen.store.display_name }}
         <br>
         Condition: {{ chosen.wear }}
         <br>
@@ -74,7 +74,7 @@
             <tbody>
             {% for card in other_cards %}
             <tr>
-                <td>{{ card.seller }}</td>
+                <td>{{ card.store.display_name }}</td>
                 <td>{{ card.wear }}</td>
                 <td>{{ card.printing }}</td>
                 <td>${{ card.price }}</td>

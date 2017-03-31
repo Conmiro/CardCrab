@@ -34,7 +34,9 @@ urlpatterns = [
     url(r'^submit_order/', views.submit_order, name='submit_order'),
     url(r'^register/', views.register, name='register'),
     url(r'^login/$', auth_views.login, name='login', kwargs={'template_name': 'login.html','redirect_authenticated_user': True}),
-    url(r'^logout/$', auth_views.logout, name='logout')
+    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^my_store/', views.my_store, name='my_store'),
+    url(r'^my_store_body/', views.my_store_body, name='my_store_body')
 
 ]
 

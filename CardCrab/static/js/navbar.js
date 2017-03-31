@@ -57,8 +57,7 @@ function logout() {
             async: false,
             data: data,
             success: function(data){
-
-               location.reload();
+                window.location.replace("/");
 
             }
        })

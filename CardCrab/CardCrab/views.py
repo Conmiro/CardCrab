@@ -388,7 +388,7 @@ def add_card(request):
                         price=data['price'],
                         store=store)
             card.save()
-            return render(request, 'seller/my_store.html')
+            return my_store(request)
 
     form = AddCardForm()
 

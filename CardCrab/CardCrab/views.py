@@ -305,11 +305,7 @@ def search_body(request):
 
 
 def submit_order(request):
-    try:
-        cart = Cart.objects.get(pk=1)
-    except ObjectDoesNotExist:
-        cart = Cart()
-        cart.save()
+    cart = get_cart(request)
 
     cart.card_list.clear()
     return render(request, 'checkout.html')

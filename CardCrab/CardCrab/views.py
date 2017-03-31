@@ -22,6 +22,8 @@ def register(request):
             data = form.cleaned_data
             print(data)
             username = data['username']
+            first_name = data['first_name']
+            last_name = data['last_name']
             email = data['email']
             password = data['password']
             confirm_password = data['confirm_password']
@@ -35,6 +37,9 @@ def register(request):
                 return HttpResponse(json.dumps(errors))
             else:
                 user = User.objects.create_user(username, email, password)
+                user.first_name = first_name
+                user.last_name = last_name
+                user.save()
                 return HttpResponse("SUCCESS")
 
 

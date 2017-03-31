@@ -57,6 +57,9 @@
                     <ul class="nav navbar-nav navbar-group navbar-right">
                         {% if user.is_authenticated %}
                         <li>
+                            <p class="nav-text">Hello, {{ user.first_name }}</p>
+                        </li>
+                        <li>
                             <a href="#" onclick="profile()">Profile</a>
                         </li>
                         <li>

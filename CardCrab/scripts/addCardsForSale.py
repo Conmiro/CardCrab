@@ -6,7 +6,7 @@ CardPrint.objects.all().delete()
 CardWear.objects.all().delete()
 Card.objects.all().delete()
 User.objects.all().delete()
-Store.objectsp.all().delete()
+Store.objects.all().delete()
 
 sellers = ['Connor Romeros', 'Steven Cenci', 'Alex Betancourt', 'Daniel Armstrong']
 wears = ['Mint', 'Lightly Played', 'Moderately Played', 'Heavily Played', 'Damaged']

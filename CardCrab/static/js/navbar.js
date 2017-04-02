@@ -92,12 +92,21 @@ function add_card(button) {
     $('#add_card_submit').addClass('disabled');
     $('#card_added').show();
 
-
-     setTimeout(function() {
+    var data = $('#add_card_form').serialize()
+    $.ajax({
+        url: '/add_card/',
+        type: 'POST',
+        data: data,
+        success: function(data){
+            console.log(data)
+           setTimeout(function() {
                  window.location.replace("/my_store/");
-            }, 2500)
+            }, 1500)
 
-    return false
+        }
+   })
+
+   return false
 
 
 }

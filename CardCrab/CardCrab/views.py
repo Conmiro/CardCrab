@@ -17,8 +17,9 @@ def my_store(request):
 
     if request.method == 'POST':
         action = request.POST.get('action')
-        card_id = request.POST.get('card_id')
-        card = Card.objects.get(pk=card_id)
+        if action == 'remove' or action == 'set':
+            card_id = request.POST.get('card_id')
+            card = Card.objects.get(pk=card_id)
         if action == 'remove':
 
             print("Removing: " + card_id)
@@ -379,10 +380,12 @@ def add_card_details(request):
 
 
 def add_card(request):
-
+    print("requested")
     if request.method == 'POST':
+        print("posting")
         form = AddCardForm(request.POST)
         if form.is_valid():
+            print("form not valid")
             data = form.cleaned_data
             user = request.user
             store = Store.objects.filter(owner=user).get()
@@ -393,6 +396,8 @@ def add_card(request):
                         quantity=data['quantity'],
                         store=store)
             card.save()
+            print('test')
+            print(card.card_details.name)
             return my_store(request)
 
     form = AddCardForm()

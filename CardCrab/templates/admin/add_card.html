@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <form onsubmit="return add_card()" action = "/add_card/" method="post">
+                        <form id="add_card_form" onsubmit="return add_card()" action = "/add_card/" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <br>

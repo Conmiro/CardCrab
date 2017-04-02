@@ -1,6 +1,7 @@
 $ (document).ready(function() {
 
         loadStore()
+        $('[data-toggle="tooltip"]').tooltip();
 
 
 

@@ -20,7 +20,7 @@
     <tbody>
     {% for card in cardlist %}
     <tr>
-        <td style="vertical-align:middle"><input class ="qty-input" id = "qty-{{card.id}}"type="text" onkeydown="return updateQuantity(event, this, {{card.id }})"value="{{ card.quantity }}" size="3" maxlength="3" style="text-align: center;"></td>
+        <td style="vertical-align:middle"><input class ="qty-input" id = "qty-{{card.id}}"type="text" onkeydown="return updateQuantity(event, this, {{card.id }})" value="{{ card.quantity }}" size="3" maxlength="3" style="text-align: center;"></td>
         <td><img class="card-preview-sm" onclick="detailView({{ card.card_details.id }}, '{{ card.card_details.name|escapejs }}', {{ card.id }})" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview"></td>
         <td>{{card.card_details.name}}</td>
         <td>{{card.store.display_name}}</td>
@@ -33,7 +33,7 @@
     </tr>
     {% endfor %}
         <tr>
-        <td><u id = 'update' onclick='updateAll()' style="cursor: pointer;">Update</u></td>
+        <td><u id = 'update' onclick='updateAll(this)' data-toggle="tooltip" data-delay=500 title="Note: quantities without enough supply will revert." data-placement="bottom" style="cursor: pointer;">Update</u></td>
         <td></td>
         <td></td>
         <td></td>

@@ -3,12 +3,10 @@ $ (document).ready(function() {
         loadShippingBilling()
         loadCart()
 
-
-
 })
 
 
-function updateAll() {
+function updateAll(button) {
     $('.qty-input').each(function() {
         var id = $(this).attr('id')
         var qty = $(this).val()
@@ -23,7 +21,11 @@ function updateAll() {
                     if (data != 'Set!') {
                         console.log("Not enough...")
                     }
-                    loadCart()
+                    $(button).text('Done!')
+
+                    setTimeout(function() {
+                            loadCart()
+                        }, 500)
 
                 }
            })
@@ -46,15 +48,23 @@ function updateQuantity(e, textBox, card_id) {
                     success: function(data){
                         if (data != 'Set!') {
                             console.log("Not enough...")
+                            textbox.css('background-color','red');
+
+                        }else {
+                            textbox.css('background-color','palegreen');
                         }
-                        loadCart()
+
+
+                        setTimeout(function() {
+                            loadCart()
+                        }, 500)
 
                     }
                })
 
         }
 
-     }
+}
 
 
 function removeFromCart(card_id) {
@@ -85,6 +95,8 @@ function loadCart() {
             url: '/cart_body/',
             success: function(data){
                 $('#cart_body').html(data)
+                $('[data-toggle="tooltip"]').tooltip();
+
 
             }
        })

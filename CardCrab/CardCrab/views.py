@@ -17,12 +17,20 @@ def my_store(request):
 
     if request.method == 'POST':
         action = request.POST.get('action')
-
+        card_id = request.POST.get('card_id')
+        card = Card.objects.get(pk=card_id)
         if action == 'remove':
-            card_id = request.POST.get('card_id')
+
             print("Removing: " + card_id)
-            Card.objects.get(id=card_id).delete()
+            card.delete()
             return HttpResponse("Deleted!")
+
+        if action == 'set':
+            set_quantity = int(request.POST.get('quantity'))
+            card.quantity = set_quantity
+            card.save()
+            return HttpResponse("Set!")
+
 
     user = request.user
 

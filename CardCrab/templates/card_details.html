@@ -46,7 +46,7 @@
         <br>
         Price: {{ chosen.price }}
         <br>
-        <button type="button" onclick="addToCart(this, '{{chosen.id}}')"class="btn btn-success add-cart-btn">Add to Cart</button>
+        <button type="button" onclick="addToCart(this, '{{chosen.id}}')"class="btn btn-success add-cart-btn">Quick Add 1</button>
         <br>
         {% endif %}
     </div>
@@ -79,7 +79,7 @@
                 <td>{{ card.printing }}</td>
                 <td>${{ card.price }}</td>
                 <td>{{ card.quantity }}</td>
-                <td><button type="button" onclick="addToCart(this, '{{card.id}}')" class="btn btn-success add-cart-btn">Add to Cart</button></td>
+                <td><button type="button" onclick="addToCart(this, '{{card.id}}')" class="btn btn-success add-cart-btn">Quick Add 1</button></td>
             </tr>
             {% endfor %}
             </tbody>

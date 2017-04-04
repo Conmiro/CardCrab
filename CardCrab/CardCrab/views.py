@@ -93,18 +93,8 @@ def register(request):
 
 
 def shipping_billing_body(request):
-
-    try:
-        shipping_info = ShippingInformation.objects.get(pk=1)
-    except ObjectDoesNotExist:
-        shipping_info = ShippingInformation()
-        shipping_info.save()
-
-    try:
-        billing_info = BillingInformation.objects.get(pk=1)
-    except ObjectDoesNotExist:
-        billing_info = BillingInformation()
-        billing_info.save()
+    shipping_info = get_shipping(request)
+    billing_info = get_billing(request)
 
     if request.method == 'POST':
         info_type = request.POST.get('info_type')
@@ -220,6 +210,27 @@ def shopping_cart(request):
     context = {'cardlist': cardlist, 'total': total}
 
     return render(request, 'shopping_cart.html', context)
+
+
+def get_billing(request):
+    if request.session.get('billing_info_id', False):
+        billing_info = BillingInformation(pk=request.session.get('billing_info_id'))
+    else:
+        billing_info = BillingInformation()
+        billing_info.save()
+        request.session['billing_info_id'] = billing_info.id
+
+    return billing_info
+
+
+def get_shipping(request):
+    if request.session.get('shipping_info_id', False):
+        shipping_info = ShippingInformation(pk=request.session.get('shipping_info_id'))
+    else:
+        shipping_info = ShippingInformation()
+        shipping_info.save()
+        request.session['shipping_info_id'] = shipping_info.id
+    return shipping_info
 
 
 def get_cart(request):

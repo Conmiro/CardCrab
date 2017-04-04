@@ -160,3 +160,19 @@ $('#order_modal').modal('show');
       loadCart();
 
 }
+
+function clearShipping() {
+      $('#shipping_modal').find('input:text').val('');
+      $('#shipping_modal').find('select').val('');
+
+
+}
+
+
+function clearBilling() {
+      $('#billing_modal').find('input:text').val('');
+      $('#billing_modal').find('input[type="number"]').val('');
+      $('#billing_modal').find('select').val('');
+
+
+}

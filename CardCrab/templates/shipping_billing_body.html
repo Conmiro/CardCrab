@@ -59,6 +59,7 @@
               {% csrf_token %}
               {{ shipping_form.as_p }}
               <input type = "submit" value="Save">
+              <input onclick="clearShipping()" type = "button" value="Clear">
           </form>
 
       </div>
@@ -82,6 +83,7 @@
               {% csrf_token %}
               {{ billing_form.as_p }}
               <input type = "submit" value="Save">
+              <input onclick="clearBilling()" type = "button" value="Clear">
           </form>
 
       </div>

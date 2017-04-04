@@ -46,6 +46,11 @@ class AddCardForm(forms.ModelForm):
         labels = {
             'card_details': 'Card'
         }
+
+    def __init__(self, *args, **kwargs):
+        super(AddCardForm, self).__init__(*args, **kwargs)
+        self.fields['card_details'].queryset = CardDetails.objects.order_by('name')
+
 # class AddCardForm(forms.Form):
 #     card_details = forms.ModelChoiceField(queryset=CardDetails.objects.all(), label='Card')
 #     wear = forms.ModelChoiceField(queryset=CardWear.objects.all())

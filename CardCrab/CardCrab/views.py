@@ -150,6 +150,11 @@ def shopping_cart(request):
 
     if request.method == 'POST':
         action = request.POST.get('action')
+
+        if action == 'clear':
+            cart.card_list.clear()
+            return HttpResponse("Cleared")
+
         card_id = request.POST.get('card_id')
         card = Card.objects.get(pk=card_id)
 

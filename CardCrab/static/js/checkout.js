@@ -161,6 +161,22 @@ $('#order_modal').modal('show');
 
 }
 
+function emptyCart() {
+
+    var data = {'action': 'clear'}
+    $.ajax({
+            url: '/shopping_cart/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                loadCart()
+
+
+            }
+       })
+
+}
+
 function clearShipping() {
       $('#shipping_modal').find('input:text').val('');
       $('#shipping_modal').find('select').val('');

@@ -260,7 +260,7 @@ def card_details(request):
             chosen = None
         details = CardDetails.objects.get(pk=card_id)
 
-        other_cards = Card.objects.filter(card_details=details).exclude(pk=chosen_id).order_by('price')
+        other_cards = Card.objects.filter(card_details=details).exclude(pk=chosen_id).order_by('price', 'wear')
 
         context = {'details': details, 'chosen': chosen, 'other_cards': other_cards}
         return render(request, 'card_details.html', context)

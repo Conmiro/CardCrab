@@ -24,7 +24,7 @@
         <td><img class="card-preview-sm" onclick="detailView({{ card.card_details.id }}, '{{ card.card_details.name|escapejs }}', {{ card.id }})" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview"></td>
         <td>{{card.card_details.name}}</td>
         <td>{{card.store.display_name}}</td>
-        <td>{{card.wear}}</td>
+        <td>{{card.get_wear_display}}</td>
         <td>{{card.printing}}</td>
         <td><i class="fa fa-usd">&nbsp;{{card.price}}</i></td>
         <td><i class="fa fa-usd">&nbsp;{{card.total}}</i></td>

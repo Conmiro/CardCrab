@@ -74,13 +74,19 @@ class CardDetails(models.Model):
     def __str__(self):
         return self.name
 
+
 class Store(models.Model):
     owner = models.OneToOneField(User)
     display_name = models.CharField(max_length=64)
 
+
+wear_choices = ((1, 'Mint'), (2, 'Lightly Played'), (3, 'Moderately Played'), (4, 'Heavily Played'), (5, 'Damaged'))
+
+
 class Card(models.Model):
     card_details = models.ForeignKey(CardDetails)
-    wear = models.ForeignKey(CardWear)
+    wear = models.IntegerField(choices=wear_choices)
+    # wear = models.ForeignKey(CardWear)
     printing = models.ForeignKey(CardPrint)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     quantity = models.IntegerField(default=1)

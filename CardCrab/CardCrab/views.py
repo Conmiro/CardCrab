@@ -319,7 +319,7 @@ def search_body(request):
             for individ in individuals:
                 card.total_quantity += individ.quantity
                 card.seller_count += 1
-            cheapest = individuals.order_by('price').first()
+            cheapest = individuals.order_by('price', 'wear').first()
             card.cheapest_card = cheapest
 
 
@@ -337,7 +337,7 @@ def submit_order(request):
 
 def search(request):
 
-    filters = {'wear': CardWear.objects.all(), 'print': CardPrint.objects.all(), 'color': CardColor.objects.all(),
+    filters = {'wear': Card._meta.get_field('wear').choices, 'print': CardPrint.objects.all(), 'color': CardColor.objects.all(),
                'rarity': CardRarity.objects.all(), 'set': CardSet.objects.all(), 'type': CardType.objects.all()}
 
     search_text = None

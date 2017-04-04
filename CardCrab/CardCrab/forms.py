@@ -39,10 +39,17 @@ class AddCardDetailsForm(forms.Form):
     type = forms.ModelChoiceField(queryset=CardType.objects.all())
 
 
-class AddCardForm(forms.Form):
-    card_details = forms.ModelChoiceField(queryset=CardDetails.objects.all(), label='Card')
-    wear = forms.ModelChoiceField(queryset=CardWear.objects.all())
-    printing = forms.ModelChoiceField(queryset=CardPrint.objects.all())
-    quantity = forms.IntegerField()
-    price = forms.DecimalField(decimal_places=2, max_digits=6)
+class AddCardForm(forms.ModelForm):
+    class Meta:
+        model = Card
+        exclude = ['store']
+        labels = {
+            'card_details': 'Card'
+        }
+# class AddCardForm(forms.Form):
+#     card_details = forms.ModelChoiceField(queryset=CardDetails.objects.all(), label='Card')
+#     wear = forms.ModelChoiceField(queryset=CardWear.objects.all())
+#     printing = forms.ModelChoiceField(queryset=CardPrint.objects.all())
+#     quantity = forms.IntegerField()
+#     price = forms.DecimalField(decimal_places=2, max_digits=6)
 

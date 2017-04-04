@@ -68,6 +68,26 @@ function updateAll(button) {
         })
 }
 
+function detailView(card_id, card_name, chosen_id) {
+
+$('#detail_modal_title').text(card_name)
+$('#detail_modal').modal('show');
+
+    data = {'card_id': card_id, 'chosen_id': chosen_id}
+    $.ajax({
+            url: '/card_details/',
+            type: 'POST',
+            data: data,
+            success: function(data){
+                $('#detail_modal_body').html(data)
+                return false
+            }
+       })
+
+
+
+}
+
 function updateQuantity(e, textBox, card_id) {
 
         if (e.which == 13) {

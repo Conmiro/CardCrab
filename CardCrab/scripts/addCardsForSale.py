@@ -9,7 +9,6 @@ User.objects.all().delete()
 Store.objects.all().delete()
 
 sellers = ['Connor Romeros', 'Steven Cenci', 'Alex Betancourt', 'Daniel Armstrong']
-wears = ['Mint', 'Lightly Played', 'Moderately Played', 'Heavily Played', 'Damaged']
 printings = ['Foil', 'Normal']
 
 for seller in sellers:
@@ -28,10 +27,6 @@ for seller in sellers:
 
 
 
-for wear in wears:
-    cw = CardWear(name=wear)
-    cw.save()
-
 for printing in printings:
     cp = CardPrint(name=printing)
     cp.save()
@@ -40,22 +35,22 @@ for card_details in CardDetails.objects.all():
     for i in range(randint(1,10)):
         # get a random seller
         store = Store.objects.all().order_by('?').first()
-        wear = CardWear.objects.all().order_by('?').first()
+        wear = randint(1, 5)
         printing = CardPrint.objects.all().order_by('?').first()
         price = (randint(1, 5)) / 100
         quantity = randint(1, 30)
 
-        if wear.name == 'Mint':
+        if wear == 1:
             quantity*=0.25
             price *= 10
-        elif wear.name == "Lightly Played":
+        elif wear == 2:
             quantity*=0.5
             price *= 5
-        elif wear.name == "Moderately Played":
+        elif wear == 3:
             quantity *= 3
-        elif wear.name == "Heavily Played":
+        elif wear == 4:
             price *= 0.5
-        elif wear.name == "Damaged":
+        elif wear == 5:
             price *= 0.1
 
         if card_details.rarity.name == 'Mythic Rare':

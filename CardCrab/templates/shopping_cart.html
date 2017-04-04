@@ -4,7 +4,7 @@
     {% for card in cardlist %}
     <tr>
         <td>{{card.quantity}}x{{ card.card_details.name}}<br><small>{{ card.seller }}</small></td>
-        <td>{{ card.wear }}<br><small>{{ card.printing }}</small></td>
+        <td>{{ card.get_wear_display}}<br><small>{{ card.printing }}</small></td>
         <td>${{card.price}}</td>
         <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right hidden-btn" aria-hidden="true"></button></td>
     </tr>

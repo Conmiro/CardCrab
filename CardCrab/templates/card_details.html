@@ -38,7 +38,7 @@
         {% if chosen.store %}
         Selected Seller: {{ chosen.store.display_name }}
         <br>
-        Condition: {{ chosen.wear }}
+        Condition: {{ chosen.get_wear_display }}
         <br>
         Printing: {{ chosen.printing }}
         <br>
@@ -75,7 +75,7 @@
             {% for card in other_cards %}
             <tr>
                 <td>{{ card.store.display_name }}</td>
-                <td>{{ card.wear }}</td>
+                <td>{{ card.get_wear_display}}</td>
                 <td>{{ card.printing }}</td>
                 <td>${{ card.price }}</td>
                 <td>{{ card.quantity }}</td>

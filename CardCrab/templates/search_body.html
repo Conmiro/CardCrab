@@ -8,7 +8,7 @@
             {% for card in cards %}
             <li class="media">
 
-                <img class="media-object pull-left card-preview-md" src="{{ card.front_art }} " onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})">
+                <img class="media-object pull-left card-preview-md" src="{{ card.front_art }} " onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id }})" alt="image of {{card.name}}">
 
                 <div class="media-body">
                     <h4 class="media-heading">
@@ -35,14 +35,14 @@
                         <tr>
                             <td>
                                 {% if card.cheapest_card %}
-                                <p class = "pull-left">{{card.total_quantity}} cards available total from {{card.seller_count}} sellers.</p>
-                                <p class = "pull-right"><input  style="text-align:center" id = "qty-{{ card.cheapest_card.id}}" type = "text" value = "1" size = "1">&nbsp; of {{ card.cheapest_card.quantity }}</p>
+                                <p class = "pull-left" tabindex="0" aria-label="{{card.total_quantity}} {{card.name}} cards available total from {{card.seller_count}} sellers.">{{card.total_quantity}} cards available total from {{card.seller_count}} sellers.</p>
+                                <p class = "pull-right"><input  style="text-align:center" id = "qty-{{ card.cheapest_card.id}}" type = "text" value = "1" size = "1" aria-label="there are {{card.cheapest_card.quantity}} of the card {{card.name}} for the price {{card.cheapest_card.price}}">&nbsp; of {{ card.cheapest_card.quantity }}</p>
                                 {% endif %}
                                 <br>
                                 <br>
-                                <button type="button" class="btn btn-info pull-left" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id|default:0 }})">Details/Other Sellers</button>
+                                <button type="button" class="btn btn-info pull-left" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id|default:0 }})" aria-label="Details and other sellers button for the card {{card.name}}">Details/Other Sellers</button>
                                 {% if card.cheapest_card %}
-                                <button type="button" class="btn btn-success add-cart-btn pull-right" onclick="addToCart(this, '{{card.cheapest_card.id}}')">Add to Cart</button>
+                                <button type="button" class="btn btn-success add-cart-btn pull-right" onclick="addToCart(this, '{{card.cheapest_card.id}}')" aria-label="Add the card {{card.name}} to the cart">Add to Cart</button>
                                 {% endif %}
                             </td>
                         </tr>
@@ -74,7 +74,7 @@
 
         {% if cards.has_previous %}
             <input type="hidden" name="prevpage" id="prevpage" value="{{ cards.previous_page_number}}">
-            <button type="button" onClick="changePage({{ cards.previous_page_number}} )">Previous</button>
+            <button type="button" onClick="changePage({{ cards.previous_page_number}} )" aria-label="go to the previous page of search results">Previous</button>
         {% endif %}
 
 
@@ -83,7 +83,7 @@
 
         {% if cards.has_next %}
             <input type="hidden" name="nextpage" id="nextpage" value="{{ cards.next_page_number}}">
-            <button type ="button" onClick="changePage({{ cards.next_page_number}})">Next</button>
+            <button type ="button" onClick="changePage({{ cards.next_page_number}})" aria-label="go to the next page of search results">Next</button>
         {% endif %}
 
 </div>

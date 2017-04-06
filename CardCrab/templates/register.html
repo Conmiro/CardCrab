@@ -9,7 +9,7 @@
 
 
     {% if field.name == 'username' %}
-    <input type="text" id="{{ field.name }}" name="{{ field.name }}" minlength="5" maxlength="25" class = "form-control" required>
+    <input type="text" id="{{ field.name }}" name="{{ field.name }}" aria-label="username needs to be between 5 and 25 characters" minlength="5" maxlength="25" class = "form-control" required>
     <p id="username_error" class="bg-danger">Username is already taken!</p>
     {% elif field.name == 'email' %}
     <input type="email" id="{{ field.name}}" name="{{ field.name }}" class="form-control" required>

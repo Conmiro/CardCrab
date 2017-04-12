@@ -9,14 +9,14 @@
 
 
     {% if field.name == 'username' %}
-    <input type="text" id="{{ field.name }}" name="{{ field.name }}" minlength="5" maxlength="25" class = "form-control" required>
+    <input type="text" id="{{ field.name }}" name="{{ field.name }}" aria-label="username needs to be between 5 and 25 characters" minlength="5" maxlength="25" class = "form-control" required>
     <p id="username_error" class="bg-danger">Username is already taken!</p>
     {% elif field.name == 'email' %}
     <input type="email" id="{{ field.name}}" name="{{ field.name }}" class="form-control" required>
     {% elif field.name == 'password' %}
-    <input type="password" id="{{ field.name }}" name="{{ field.name }}" class="form-control" minlength="6" maxlength="25" required>
+    <input type="password" id="{{ field.name }}" name="{{ field.name }}" class="form-control" aria-label="password text-box password needs to be between 6 and 25 characters long" minlength="6" maxlength="25" required>
     {% elif field.name == 'confirm_password' %}
-    <input type="password" id="{{ field.name }}" name="{{ field.name }}" class="form-control" minlength="6" maxlength="25" required>
+    <input type="password" id="{{ field.name }}" name="{{ field.name }}" class="form-control" aria-label="confirm password needs to match the password you entered" minlength="6" maxlength="25" required>
     <p id="password_error" class="bg-danger">Passwords don't match!</p>
     {% else %}
     <input type="text" id="{{ field.name }}" name="{{ field.name }}" class="form-control" required>

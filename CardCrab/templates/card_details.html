@@ -11,7 +11,7 @@
         <button id = "flip" onclick="flipArt()" type="button" class="btn btn-default btn-xs" value="{{ details.back_art }}">FLIP</button>
         {% endif %}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" tabindex="0">
         <br>
         Set Name: {{details.set}}
         <br>
@@ -33,7 +33,7 @@
 
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" tabindex="0">
         <br>
         {% if chosen.store %}
         Selected Seller: {{ chosen.store.display_name }}
@@ -46,7 +46,7 @@
         <br>
         Price: {{ chosen.price }}
         <br>
-        <button type="button" onclick="addToCart(this, '{{chosen.id}}')"class="btn btn-success add-cart-btn">Quick Add 1</button>
+        <button type="button" onclick="addToCart(this, '{{chosen.id}}')"class="btn btn-success add-cart-btn" aria-label="Quick add one card to cart">Quick Add 1</button>
         <br>
         {% endif %}
     </div>
@@ -57,7 +57,7 @@
 
 
 <div class = "row" >
-    <div class="container col-md-12" style="overflow: auto">
+    <div class="container col-md-12" style="overflow: auto" tabindex="0">
         <h2>Other {{ details.name }} for Sale</h2>
         {% if other_cards %}
         <table class="table">

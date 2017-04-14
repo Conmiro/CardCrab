@@ -73,7 +73,7 @@
                                             {% endif %}
                                             {% endfor %}
                                             </div>
-                                            <a onclick="moreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_types" tabindex="0">More</a>
+                                            <a onclick="moreLess(this)" onkeypress="pushMoreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_types" tabindex="0">More</a>
                                         </ul>
                                     </li>
                                     <li class="list-group-item">
@@ -120,7 +120,7 @@
                                             {% endif %}
                                             {% endfor %}
                                             </div>
-                                            <a onclick="moreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_sets" aria-label="more card filters">More</a>
+                                            <a onclick="moreLess(this)" onkeypress="pushMoreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_sets" aria-label="more card filters" tabindex="0">More</a>
                                         </ul>
                                     </li>
                                 </ul>

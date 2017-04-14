@@ -5,6 +5,9 @@ $ (document).ready(function() {
 
 })
 
+function pushClick(elem){
+    $(elem).trigger("click")
+}
 
 function updateAll(button) {
     $('.qty-input').each(function() {

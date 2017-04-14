@@ -22,7 +22,6 @@ def my_store(request):
             card = Card.objects.get(pk=card_id)
         if action == 'remove':
 
-            print("Removing: " + card_id)
             card.delete()
             return HttpResponse("Deleted!")
 
@@ -61,7 +60,6 @@ def register(request):
         errors = []
         if form.is_valid():
             data = form.cleaned_data
-            print(data)
             username = data['username']
             first_name = data['first_name']
             last_name = data['last_name']
@@ -110,8 +108,8 @@ def shipping_billing_body(request):
     shipping_form = ShippingInformationForm(instance=shipping_info)
     billing_form = BillingInformationForm(instance=billing_info)
 
-    context = {'shipping_info': shipping_info, 'billing_info': billing_info, 'shipping_form': shipping_form, 'billing_form': billing_form}
 
+    context = {'shipping_info': shipping_info, 'billing_info': billing_info, 'shipping_form': shipping_form, 'billing_form': billing_form}
     return render(request, 'shipping_billing_body.html', context)
 
 
@@ -184,7 +182,6 @@ def shopping_cart(request):
             curr_quantity = card_in_cart.quantity
 
             new_quantity = add_quantity + curr_quantity
-            print(new_quantity)
             if new_quantity > available_quantity:
                 return HttpResponse("Not Enough")
             else:
@@ -210,7 +207,6 @@ def shopping_cart(request):
         card.price = cardincart.quantity * card.price
         card.quantity = cardincart.quantity
 
-    print(cardlist)
 
     context = {'cardlist': cardlist, 'total': total}
 
@@ -219,7 +215,7 @@ def shopping_cart(request):
 
 def get_billing(request):
     if request.session.get('billing_info_id', False):
-        billing_info = BillingInformation(pk=request.session.get('billing_info_id'))
+        billing_info = BillingInformation.objects.get(pk=request.session.get('billing_info_id'))
     else:
         billing_info = BillingInformation()
         billing_info.save()
@@ -230,7 +226,7 @@ def get_billing(request):
 
 def get_shipping(request):
     if request.session.get('shipping_info_id', False):
-        shipping_info = ShippingInformation(pk=request.session.get('shipping_info_id'))
+        shipping_info = ShippingInformation.objects.get(pk=request.session.get('shipping_info_id'))
     else:
         shipping_info = ShippingInformation()
         shipping_info.save()
@@ -240,7 +236,6 @@ def get_shipping(request):
 
 def get_cart(request):
     if request.session.get('cart_id', False):
-        print("Cart ID: " + str(request.session.get('cart_id')))
         cart = Cart.objects.get(pk=request.session.get('cart_id'))
     else:
         cart = Cart()
@@ -344,7 +339,6 @@ def search(request):
     if request.method == 'POST':
         search_text = request.POST.get('search_text')
 
-    print(search_text)
     context = {'filters': filters, 'search_text': search_text}
     return render(request, 'search.html', context)
 
@@ -396,12 +390,9 @@ def add_card_details(request):
 
 
 def add_card(request):
-    print("requested")
     if request.method == 'POST':
-        print("posting")
         form = AddCardForm(request.POST)
         if form.is_valid():
-            print("form not valid")
             data = form.cleaned_data
             user = request.user
             store = Store.objects.filter(owner=user).get()
@@ -412,8 +403,6 @@ def add_card(request):
                         quantity=data['quantity'],
                         store=store)
             card.save()
-            print('test')
-            print(card.card_details.name)
             return my_store(request)
 
     form = AddCardForm()

@@ -14,19 +14,19 @@
                         <form id="filter_form" name="filter_form" method="post" target="{% url 'search_body' %}">
                         <!--This is for the condition filter-->
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Condition</h3>
+                            <div class="panel-heading" tabindex="0">
+                                <h3 class="panel-title" aria-label="Condition card filters">Condition</h3>
                             </div>
                             <div class="panel-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item">
+                                    <li class="list-group-item" >
                                         Wear
                                         <ul class="media-list">
                                             {% for wear in filters.wear %}
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name = "wear" value = "{{wear.0}}">&nbsp;{{ wear.1 }}
+                                                        <input type="checkbox" name = "wear" value = "{{wear.0}}" aria-label="{{wear.1}} card condition filter">&nbsp;{{ wear.1 }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -40,7 +40,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name = "printing" value = "{{ print.id }}">&nbsp;{{ print }}
+                                                        <input type="checkbox" name = "printing" value = "{{ print.id }}" aria-label="{{print}} print card filter">&nbsp;{{ print }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -64,7 +64,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="type" value="{{type.id}}"> {{ type }}
+                                                        <input type="checkbox" name="type" value="{{type.id}}" aria-label="{{type}} type card filter"> {{ type }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -73,7 +73,7 @@
                                             {% endif %}
                                             {% endfor %}
                                             </div>
-                                            <a onclick="moreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_types">More</a>
+                                            <a onclick="moreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_types" tabindex="0">More</a>
                                         </ul>
                                     </li>
                                     <li class="list-group-item">
@@ -83,7 +83,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="color" value="{{color.id}}">&nbsp;{{ color }}
+                                                        <input type="checkbox" name="color" value="{{color.id}}" aria-label="{{color}} color card filter">&nbsp;{{ color }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -97,7 +97,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="rarity" value="{{rarity.id}}">&nbsp;{{ rarity }}
+                                                        <input type="checkbox" name="rarity" value="{{rarity.id}}" aria-label="{{rarity}} rarity card filter">&nbsp;{{ rarity }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -111,7 +111,7 @@
                                             <li>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="set" value="{{set.id}}">&nbsp;{{ set }}
+                                                        <input type="checkbox" name="set" value="{{set.id}}" aria-label="{{set}} set card filter">&nbsp;{{ set }}
                                                     </label>
                                                 </div>
                                             </li>
@@ -120,7 +120,7 @@
                                             {% endif %}
                                             {% endfor %}
                                             </div>
-                                            <a onclick="moreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_sets">More</a>
+                                            <a onclick="moreLess(this)" style="cursor: pointer;" data-toggle="collapse" data-target="#more_sets" aria-label="more card filters">More</a>
                                         </ul>
                                     </li>
                                 </ul>
@@ -140,7 +140,7 @@
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Shopping Cart</h3>
+                                <h3 class="panel-title" tabindex="0"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Shopping Cart</h3>
                             </div>
                             <div id="cart_section" class="panel-body">
 

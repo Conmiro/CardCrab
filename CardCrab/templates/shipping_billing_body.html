@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Shipping
-        <a data-toggle="modal" data-target="#shipping_modal" class="pull-right" style="cursor: pointer;"><u>Edit</u></a></h3>
+        <a data-toggle="modal" role="button" tabindex="0" data-target="#shipping_modal" class="pull-right" style="cursor: pointer;"><u>Edit</u></a></h3>
     </div>
     <div class="panel-body">
         First Name: {{ shipping_info.first_name }}
@@ -27,7 +27,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Billing
-        <a class="pull-right" data-toggle="modal" data-target="#billing_modal" style="cursor: pointer;"><u>Edit</u></a></h3>
+        <a class="pull-right" role="button" tabindex="0" data-toggle="modal" data-target="#billing_modal" style="cursor: pointer;"><u>Edit</u></a></h3>
     </div>
     <div class="panel-body">
         <img src="{{ billing_info.card_provider.art }}" alt="{{ billing_info.card_provider.name }} logo">
@@ -55,7 +55,7 @@
       </div>
       <div class="modal-body"">
           <form action="/shipping_billing_body/" method = "post">
-              <input type="hidden" name = "info_type" value="shipping">
+              <input type="hidden" name = "info_type" value="shipping" aria-label="enter shipping information">
               {% csrf_token %}
               {{ shipping_form.as_p }}
               <input type = "submit" value="Save">
@@ -79,7 +79,7 @@
       </div>
       <div class="modal-body">
           <form action="/shipping_billing_body/" method = "post">
-              <input type="hidden" name = "info_type" value="billing">
+              <input type="hidden" name = "info_type" value="billing" aria-label="enter billing information">
               {% csrf_token %}
               {{ billing_form.as_p }}
               <input type = "submit" value="Save">

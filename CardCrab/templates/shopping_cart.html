@@ -6,7 +6,7 @@
         <td>{{card.quantity}}x{{ card.card_details.name}}<br><small>{{ card.seller }}</small></td>
         <td>{{ card.get_wear_display}}<br><small>{{ card.printing }}</small></td>
         <td>${{card.price}}</td>
-        <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right hidden-btn" aria-hidden="true"></button></td>
+        <td><button onclick="removeFromCart({{card.id}})" class="fa fa-close pull-right hidden-btn" aria-label="remove {{card.quantity}} of the card {{card.card_details.name}} from cart"></button></td>
     </tr>
     {% endfor %}
     <tr>
@@ -17,7 +17,7 @@
     </tr>
     </tbody>
 </table>
-<a type="button" href="{% url 'checkout' %}" class="btn btn-success pull-right">Checkout</a>
+<a type="button" href="{% url 'checkout' %}" class="btn btn-success pull-right" aria-label="Submit purchase for the price of {{total}}">Checkout</a>
 {% else %}
 Your cart is empty.
 {% endif %}

@@ -20,7 +20,7 @@
     <tbody>
     {% for card in cardlist %}
     <tr>
-        <td style="vertical-align:middle"><input class ="qty-input" id = "qty-{{card.id}}"type="text" onkeydown="return updateQuantity(event, this, {{card.id }})" value="{{ card.quantity }}" size="3" maxlength="3" style="text-align: center;"></td>
+        <td style="vertical-align:middle"><input class ="qty-input" id = "qty-{{card.id}}"type="text" onkeydown="return updateQuantity(event, this, {{card.id }})" value="{{ card.quantity }}" size="3" maxlength="3" style="text-align: center;" aria-label="this is the quantity you have in the cart for the card {{card.card_details.name}}"></td>
         <td><img class="card-preview-sm" onclick="detailView({{ card.card_details.id }}, '{{ card.card_details.name|escapejs }}', {{ card.id }})" id = "art_preview" src="{{ card.card_details.front_art}}" alt="Card Front Preview"></td>
         <td>{{card.card_details.name}}</td>
         <td>{{card.store.display_name}}</td>
@@ -49,7 +49,7 @@
 
 </table>
 
-<a type="button" href="#"  style="margin-left:10px"  onclick="submitOrder()" class="btn btn-success pull-right">Submit Order</a>
+<a type="button" href="#"  style="margin-left:10px"  onclick="submitOrder()" class="btn btn-success pull-right" aria-label="Submit order for the price of {{total}}">Submit Order</a>
 <a type="button" href="#" onclick="emptyCart()" class="btn btn-danger pull-right">Empty Cart</a>
 {% else %}
 Your cart is empty.

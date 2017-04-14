@@ -9,7 +9,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}">
+                    <a class="navbar-brand" href="{% url 'index' %}" aria-label="a home button that says Card Crab">
                         <span>Card Crab</span>
                     </a>
                 </div>
@@ -51,7 +51,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" id="search_box" name="search_text" class="form-control input-md" placeholder="Search" value="{{ search_text|default:'' }}">
+                                <input type="text" id="search_box" name="search_text" class="form-control input-md" placeholder="Card Search" value="{{ search_text|default:'' }}">
                             </form>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Shipping
-        <a data-toggle="modal" role="button" tabindex="0" data-target="#shipping_modal" class="pull-right" style="cursor: pointer;"><u>Edit</u></a></h3>
+        <a data-toggle="modal" onkeypress="pushClick(this)" role="button" tabindex="0" data-target="#shipping_modal" class="pull-right" style="cursor: pointer;"><u>Edit</u></a></h3>
     </div>
     <div class="panel-body">
         First Name: {{ shipping_info.first_name }}
@@ -27,7 +27,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Billing
-        <a class="pull-right" role="button" tabindex="0" data-toggle="modal" data-target="#billing_modal" style="cursor: pointer;"><u>Edit</u></a></h3>
+        <a class="pull-right" role="button" tabindex="0" onkeypress="pushClick(this)" data-toggle="modal" data-target="#billing_modal" style="cursor: pointer;"><u>Edit</u></a></h3>
     </div>
     <div class="panel-body">
         <img src="{{ billing_info.card_provider.art }}" alt="{{ billing_info.card_provider.name }} logo">

@@ -29,6 +29,10 @@ function moreLess(elem) {
     }
 }
 
+function pushMoreLess(elem){
+    $(elem).trigger("click")
+}
+
 function addToCart(button, card_id) {
 
     var button = $(button)

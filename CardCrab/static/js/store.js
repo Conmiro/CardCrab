@@ -7,6 +7,9 @@ $ (document).ready(function() {
 
 })
 
+function pushClick(elem){
+    $(elem).trigger("click")
+}
 
 function loadStore() {
 

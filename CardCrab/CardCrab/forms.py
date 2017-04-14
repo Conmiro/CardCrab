@@ -23,6 +23,10 @@ class ShippingInformationForm(forms.ModelForm):
         model = ShippingInformation
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super(ShippingInformationForm, self).__init__(*args, **kwargs)
+        self.fields['address_line2'].required = False
+
 class AddSellerForm(forms.Form):
     name = forms.CharField(label="Seller Name")
 

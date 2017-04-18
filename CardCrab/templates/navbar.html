@@ -16,14 +16,14 @@
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li id = "home_label">
-                            <a href="{% url 'index' %}">Home</a>
+                            <a href="{% url 'index' %}" aria-label="home button">Home</a>
                         </li>
                         <li id = "cards_label">
-                            <a href="{% url 'search' %}">Buy</a>
+                            <a href="{% url 'search' %}" aria-label="buy button">Buy</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class = "dropdown">
-                            <a class = "dropdown-toggle" data-toggle="dropdown" href="#">Sell<span class = "caret"></span></a>
+                            <a class = "dropdown-toggle" data-toggle="dropdown" href="#" aria-label="sell button">Sell<span class = "caret"></span></a>
                             <ul class = "dropdown-menu">
                                 <li><a href="{% url 'my_store' %}">My Store</a></li>
                                 <li><a href="#" onclick="open_sell_card()">Add Card for Sale</a></li>
@@ -31,16 +31,15 @@
                         </li>
                         {% else %}
                         <li id = "cards_label">
-                            <a href="{% url 'my_store' %}">Sell</a>
+                            <a href="{% url 'my_store' %}" aria-label="sell button">Sell</a>
                         </li>
                         {% endif %}
-
                     </ul>
 
                     <div class="nav navbar-nav navbar-group navbar-right">
 
 
-                        <a href = "{% url 'checkout' %}" class="navbar-btn btn btn-default" type="button">
+                        <a href = "{% url 'checkout' %}" class="navbar-btn btn btn-default" type="button" aria-label="shopping cart button">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>Shopping Cart</span>
                         </a>
@@ -68,17 +67,16 @@
                         </li>
                         -->
                         <li>
-                            <a href="#" onclick="logout()">Logout</a>
+                            <a href="#" onclick="logout()" aria-label="logout button">Logout</a>
                         </li>
                     {% else %}
                         <li >
-                            <a href="#" onclick="open_register()">Register</a>
+                            <a href="#" onclick="open_register()" aria-label="register button">Register</a>
                         </li>
                         <li>
-                            <a href="#" onclick="open_login()">Login</a>
+                            <a href="#" onclick="open_login()" aria-label="login button">Login</a>
                         </li>
                         {% endif %}
-
                 </ul>
             </div>
         </div>

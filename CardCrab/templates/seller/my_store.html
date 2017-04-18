@@ -28,7 +28,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-gear"></i> Store Settings
-                        <a class="pull-right" data-toggle="tooltip" data-delay=500 title="In future, you will be able to edit store name and other settings." data-placement="bottom" href="#"><u>Edit</u></a><h3>
+                        <a onkeypress="pushClick()" class="pull-right" data-toggle="tooltip" data-delay=500 title="In future, you will be able to edit store name and other settings." data-placement="bottom" href="#"><u>Edit</u></a><h3>
                     </div>
                     <div id="my_store_settings" class="panel-body">
                     {% if user.is_authenticated %}

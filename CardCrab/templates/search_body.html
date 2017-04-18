@@ -42,7 +42,7 @@
                                 <br>
                                 <button type="button" class="btn btn-info pull-left" onclick="detailView({{ card.id }}, '{{ card.name|escapejs }}', {{ card.cheapest_card.id|default:0 }})" aria-label="Details and other sellers button for the card {{card.name}}">Details/Other Sellers</button>
                                 {% if card.cheapest_card %}
-                                <button type="button" class="btn btn-success add-cart-btn pull-right" onclick="addToCart(this, '{{card.cheapest_card.id}}')" aria-label="Add the card {{card.name}} to the cart">Add to Cart</button>
+                                <button type="button" class="btn btn-success add-cart-btn pull-right" onclick="addToCart(this, '{{card.cheapest_card.id}}')" aria-label="Add the card {{card.name}} to the cart. the card wear is {{card.cheapest_card.get_wear_display }} and the price is {{ card.cheapest_card.price }}. This is the cheapest price.">Add to Cart</button>
                                 {% endif %}
                             </td>
                         </tr>
